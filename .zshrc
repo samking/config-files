@@ -111,10 +111,11 @@ alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
 #alias h=history
 alias grep=egrep            #use extended regular expressions
 alias ls='ls --color=auto'  #make ls pretty
+alias lsal='ls -al'
 alias lsl='ls -l'           #detail-list view
 alias dir=lsl
 alias lsa='ls -a'           #list all
-alias lsd='ls -ld *(-/DN)'  #list directories
+alias lsd='ls -d *(-/DN)'  #list directories
 alias lsh='ls -ld .*'       #list hidden
 alias ..='cd ..'
 alias :q='exit'             #quit out of the shell like from vim
