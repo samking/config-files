@@ -123,6 +123,7 @@ alias gdba='gdb --args'     #call GDB with args automatically set
 alias asdf='setxkbmap -model pc104 -layout us -variant dvorak'  #asdf->dvorak 
 alias aoeu='setxkbmap -model pc104 -layout us'                  #aoeu->qwerty
 alias rm='mv -t ~/.trash'   #don't throw things away quite yet
+alias diff='diff -bBr' 		#ignore whitespace, recursively compare directories
 
 # Global aliases -- These do not have to be
 # at the beginning of the command line.
