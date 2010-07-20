@@ -7,8 +7,6 @@ syntax on 						" syntax highlighting
 " ****************** VISUAL ******************* 
 "color traditional        	       	" load a colorscheme
 
-set cursorline  		" highlight current line
-hi cursorline guibg=#333333 	" highlight bg color of current line
 hi CursorColumn guibg=#333333   " highlight cursor
 
 if has('cmdline_info')
@@ -31,6 +29,8 @@ if has('gui_running')
   set guioptions-=T          	" remove the toolbar
   set lines=40               	" 40 lines of text instead of 24,
   colorscheme evening         " use the evening color scheme
+  set cursorline  		" highlight current line
+  hi cursorline guibg=#333333 	" highlight bg color of current line
 endif
 
 " ****************** ENVIRONMENT ******************* 
@@ -41,11 +41,8 @@ set wildmode=list:longest,full 	" comand <Tab> completion, list matches, then lo
 set shortmess+=filmnrxoOtT     	" abbrev. of messages (avoids 'hit enter')
 set showmode                   	" display the current mode
 "set spell 		 	     	" spell checking on
-set nu 							" Line numbers on
-set tabpagemax=15 				" only show 15 tabs
 set incsearch 					" find as you type search
 set hlsearch 					" highlight search terms
-set winminheight=0 				" windows can be 0 line high 
 set autowrite
 set whichwrap=b,s,h,l,<,>,[,]	" backspace and cursor keys wrap to
 set ignorecase 					" case insensitive search
@@ -53,12 +50,20 @@ set smartcase 					" case sensitive when uc present
 set backup 						" backups are nice
 set backupdir=~/.vim-backup "but don't go in current directory
 "set backupdir=C:\\Mev\\StandAlones\\Vim\\vim-backup "for windows
+"set foldclose=all
+set writebackup
+
+"*****************DISPLAY***********************
+set nu 							" Line numbers on
+set encoding=utf-8 "necessary to allow arrows
+set list  
+set listchars+=eol:¶,tab:-→  "extends:»,trail:·, "extends and precedes are only used for when wrap is disabled.  trail is just weird.
+set tabpagemax=15 				" only show 15 tabs
+set winminheight=0 				" windows can be 0 line high 
 set scrolljump=3 				" lines to scroll when cursor leaves screen
 "set scrolloff=3 				" minimum lines to keep above and below cursor
 "set foldenable  				" auto fold code
 "set foldmethod=marker 			" type of folding
-"set foldclose=all
-set writebackup
 
 " ****************** FORMATTING ******************* 
 "set nowrap                     	" wrap long lines
@@ -111,4 +116,6 @@ let g:checksyntax_auto = 1
 "let g:NERDShutUp=1
 
 let b:match_ignorecase = 1
+
+
 
