@@ -4,7 +4,8 @@ username = Sam King <samking@cs.stanford.edu>
 #merge=meld
 
 [diff]
-ignorews = true #messing with white space won't annoy diffs
+#messing with white space won't annoy diffs
+ignorews = True
 
 [trusted]
 users = root #will look into current directory's hgrc even if the user who made the hgrc is root rather than me
