@@ -123,7 +123,7 @@ alias :Q='exit'
 alias gdba='gdb --args'     #call GDB with args automatically set
 alias asdf='setxkbmap -model pc104 -layout us -variant dvorak'  #asdf->dvorak 
 alias aoeu='setxkbmap -model pc104 -layout us'                  #aoeu->qwerty
-alias rm='mv -t ~/.trash'   #don't throw things away quite yet
+alias rmt='trash'            #don't throw things away quite yet
 alias diff='diff -bBr'      #ignore whitespace, recursively compare directories
 alias hglu='hg log -r 0:' #upside down.  That way, even if there are many revisions, the important revision is visible
 
@@ -219,7 +219,7 @@ typeset -U path cdpath fpath manpath
 
 # sudo hint
 if [ ! -e "$HOME/.sudo_as_admin_successful" ]; then
-    case " $(groups) " in *\ admin\ *)
+  case " $(groups) " in *\ admin\ *)
     if [ -x /usr/bin/sudo ]; then
 	cat <<-EOF
 	To run a command as administrator (user "root"), use "sudo <command>".
@@ -227,22 +227,22 @@ if [ ! -e "$HOME/.sudo_as_admin_successful" ]; then
 	
 	EOF
     fi
-    esac
+  esac
 fi
 
 # if the command-not-found package is installed, use it
 if [ -x /usr/lib/command-not-found -o -x /usr/share/command-not-found ]; then
-	function command_not_found_handle {
-	        # check because c-n-f could've been removed in the meantime
-                if [ -x /usr/lib/command-not-found ]; then
-		   /usr/bin/python /usr/lib/command-not-found -- $1
-                   return $?
-                elif [ -x /usr/share/command-not-found ]; then
-		   /usr/bin/python /usr/share/command-not-found -- $1
-                   return $?
-		else
-		   return 127
-		fi
-	}
+  function command_not_found_handler {
+    # check because c-n-f could've been removed in the meantime
+    if [ -x /usr/lib/command-not-found ]; then
+      /usr/bin/python /usr/lib/command-not-found -- $1
+      return $?
+    elif [ -x /usr/share/command-not-found ]; then
+      /usr/bin/python /usr/share/command-not-found -- $1
+      return $?
+    else
+      return 127
+    fi
+  }
 fi
 
