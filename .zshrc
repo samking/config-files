@@ -123,7 +123,7 @@ alias :Q='exit'
 alias gdba='gdb --args'     #call GDB with args automatically set
 alias asdf='setxkbmap -model pc104 -layout us -variant dvorak'  #asdf->dvorak 
 alias aoeu='setxkbmap -model pc104 -layout us'                  #aoeu->qwerty
-alias rmt='trash'            #don't throw things away quite yet
+#alias rmt='trash'            #don't throw things away quite yet #but rmt is an existing command, so we shouldn't use it
 alias diff='diff -bBr'      #ignore whitespace, recursively compare directories
 alias hglu='hg log -r 0:' #upside down.  That way, even if there are many revisions, the important revision is visible
 
