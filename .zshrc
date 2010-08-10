@@ -92,10 +92,11 @@ DIRSTACKSIZE=40
 
 #umask 077
 
-#enviornmental variables
+#environmental variables
 export SHELL=/bin/zsh
 export EDITOR=vim
 export VISUAL=vim
+export PATH=$PATH:/var/lib/gems/1.8/bin/
 prompt='%B%n@%m%b[%*]%U%~%u$ ' #<b>name@server</b>[time]<u>path</u>$
 
 ###################################################
@@ -126,6 +127,7 @@ alias aoeu='setxkbmap -model pc104 -layout us'                  #aoeu->qwerty
 #alias rmt='trash'            #don't throw things away quite yet #but rmt is an existing command, so we shouldn't use it
 alias diff='diff -bBr'      #ignore whitespace, recursively compare directories
 alias hglu='hg log -r 0:' #upside down.  That way, even if there are many revisions, the important revision is visible
+alias sizeof='du -csh'        #disk usage.  Calculate the total; show only a summary and don't recursively print; print size in human readable format rather than in bytes
 
 # Global aliases -- These do not have to be
 # at the beginning of the command line.
