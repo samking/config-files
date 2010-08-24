@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/samking/work/instedd-machine-learning/app/views'
+let g:netrw_dirhist_2='/home/samking/work/instedd-machine-learning/app/views/datasets'
+let g:netrw_dirhist_3='/home/samking/work/instedd-machine-learning/app/views/users'
+let g:netrw_dirhist_4='/home/samking/work/instedd-machine-learning/app/controllers'

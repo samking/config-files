@@ -128,6 +128,7 @@ alias aoeu='setxkbmap -model pc104 -layout us'                  #aoeu->qwerty
 alias diff='diff -bBr'      #ignore whitespace, recursively compare directories
 alias hglu='hg log -r 0:' #upside down.  That way, even if there are many revisions, the important revision is visible
 alias sizeof='du -csh'        #disk usage.  Calculate the total; show only a summary and don't recursively print; print size in human readable format rather than in bytes
+alias processes='echo "did you mean ps?"'
 
 # Global aliases -- These do not have to be
 # at the beginning of the command line.
