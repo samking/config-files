@@ -96,8 +96,8 @@ DIRSTACKSIZE=40
 export SHELL=/bin/zsh
 export EDITOR=vim
 export VISUAL=vim
-export PATH=$PATH:/var/lib/gems/1.8/bin/
-prompt='%B%n@%m%b[%*]%U%~%u$ ' #<b>name@server</b>[time]<u>path</u>$
+#export PATH=$PATH:/var/lib/gems/1.8/bin/
+prompt='%B%n@%m%b[%*]%U%~%u%# ' #<b>name@server</b>[time]<u>path</u>% (ends with # in sudo mode)
 
 ###################################################
 # ALIASES 
