@@ -96,12 +96,15 @@ DIRSTACKSIZE=40
 export SHELL=/bin/zsh
 export EDITOR=vim
 export VISUAL=vim
-#export PATH=$PATH:/var/lib/gems/1.8/bin/
-prompt='%B%n@%m%b[%*]%U%~%u%# ' #<b>name@server</b>[time]<u>path</u>% (ends with # in sudo mode)
+export PATH=$PATH:/var/lib/gems/1.8/bin/
+prompt='%B%n@%m%b[%*]%U%~%u$ ' #<b>name@server</b>[time]<u>path</u>$
+export NNTPSERVER=usenet.stanford.edu
+export PATH=$PATH:/usr/class/cs140/`uname -m`/bin 
 
 ###################################################
 # ALIASES 
 ###################################################
+alias srrun="./sr -u samking -T '1-router 2-server' -s vns-2.stanford.edu -r rtable.vrhost -l log"
 alias mv='nocorrect mv'       # no spelling correction on mv
 alias cp='nocorrect cp'       # no spelling correction on cp
 alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
