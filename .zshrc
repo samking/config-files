@@ -90,6 +90,8 @@ DIRSTACKSIZE=40
 #limit core 0
 #limit -s
 
+mesg n #don't accept messages from other people because they mess up the screen
+
 #umask 077
 
 #environmental variables
@@ -104,7 +106,7 @@ export PATH=$PATH:/usr/class/cs140/`uname -m`/bin
 ###################################################
 # ALIASES 
 ###################################################
-alias srrun="./sr -u samking -T '1-router 2-server' -s vns-2.stanford.edu -r rtable.vrhost -l log"
+#alias srrun="./sr -u samking -T '1-router 2-server' -s vns-2.stanford.edu -r rtable.vrhost -l log"
 alias mv='nocorrect mv'       # no spelling correction on mv
 alias cp='nocorrect cp'       # no spelling correction on cp
 alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
