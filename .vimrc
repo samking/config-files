@@ -7,7 +7,8 @@ syntax on                        " syntax highlighting
 " ****************** VISUAL ******************* 
 "color traditional               " load a colorscheme
 
-hi CursorColumn guibg=#333333    " highlight cursor
+" highlight cursor
+hi CursorColumn guibg=#333333    
 
 if has('cmdline_info')
     set ruler                    " show the ruler
@@ -30,7 +31,20 @@ if has('gui_running')
   set lines=40                   " 40 lines of text instead of 24,
   colorscheme evening            " use the evening color scheme
   set cursorline                 " highlight current line
-  hi cursorline guibg=#333333    " highlight bg color of current line
+  " highlight bg color of current line
+  hi cursorline guibg=#333333    
+endif
+
+" From vim.wikia.com/wiki/Configuring_the_cursor
+" Set a green cursor in insert mode and a red cursor otherwise.
+" Works at least for xterm, rxvt, and gnome (Ubuntu 10.10) terminals.
+if &term =~ "xterm\\|rxvt"
+  "change to red now
+  :silent !echo -ne "\033]12;red\007"  
+  let &t_SI = "\033]12;green\007"      "change to green when insert mode
+  let &t_EI = "\033]12;red\007"        "change to red when exiting insert mode
+  "change to white when exiting to shell
+  autocmd VimLeave * :!echo -ne "\033]12;white\007" 
 endif
 
 " ****************** ENVIRONMENT ******************* 
