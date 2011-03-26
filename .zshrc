@@ -74,8 +74,10 @@ zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' \
 # ignore completion functions (until the _ignored completer)
 zstyle ':completion:*:functions' ignored-patterns '_*'
 
+#don't load every tab-completion module at startup.  instead, mark them all
+#as autoloaded so that when you need them, they'll get loaded.
+autoload -Uz compinit 
 #allow tab completion for command line options
-autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
@@ -113,53 +115,61 @@ compinit
 ################################################################################
 
 #Changing Directories
-unsetopt auto_cd  #if I type a directory without 'cd', zsh automatically cds into it
-setopt auto_pushd #when I cd, zsh pushes the old directory onto the directory stack
-setopt pushd_ignore_dups #don't push duplicate copies of a directory to the directory stack
+unsetopt auto_cd         #if I type a directory without 'cd', zsh automatically 
+                         #cds into it
+setopt auto_pushd        #when I cd, push the old directory onto the dir stack
+setopt pushd_ignore_dups #don't push duplicate copies of a directory to 
+                         #the directory stack
 
 #Completion
-setopt auto_list #when tab completion is ambiguous, list choices
-setopt auto_menu #when tab completion is ambiguous, use menu completion (fill in the next option when you press tab)
-setopt list_beep #when tab completion is ambiguous, beep
-setopt menu_complete #when tab completion is ambiguous, zsh automatically fills in the first option
+setopt auto_list         #when tab completion is ambiguous, list choices
+setopt auto_menu         #when tab completion is ambiguous, use menu completion 
+                         #(fill in the next option when you press tab)
+setopt list_beep         #when tab completion is ambiguous, beep
+setopt menu_complete     #when tab completion is ambiguous, zsh automatically 
+                         #fills in the first option
 
 #Expansion and Globbing
-setopt glob #expand stuff to generate filenames.  It's like tab completion
-setopt extended_glob #treat #, ~, and ^ as globbing patterns
-setopt nomatch   #zsh will get mad when I glob a pattern that doesn't exist 
+setopt glob              #expand stuff to generate filenames.  
+setopt extended_glob     #treat #, ~, and ^ as globbing patterns
+setopt nomatch           #zsh gets mad when I glob patterns that don't exist 
 
 #History
-setopt append_history #append to the history file
-setopt hist_ignore_dups #don't add immediately repeated commands to the history
-setopt extended_history #add timestamps to history.  Disable if disk space is short.
+setopt append_history    #append to the history file
+setopt hist_ignore_dups  #don't add immediately repeated commands to the history
+setopt extended_history  #add timestamps to history.  For a rough idea of the
+                         #extra disk space this uses, you'll use up an extra 
+                         #15kB for running 1000 commands.  Your call.
 
 #Init
 
 #Input / Output
-setopt aliases #use aliases defined below
-setopt correct #try to correct my bad spelling of commands
-setopt correct_all #try to correct my bad spelling of all argument son a line
-setopt dvorak    #zsh remembers that I use dvorak when correcting my typos
-setopt print_exit_value #prints the exit value of commands when it's not 0; useful when writing shell scripts
+setopt aliases           #use aliases defined below
+setopt correct           #correct my bad spelling of commands
+setopt correct_all       #correct my bad spelling of all argument son a line
+setopt dvorak            #zsh knows that I use dvorak when correcting my typos
+setopt print_exit_value  #prints the exit value of commands when it's not 0
+                         #(success); useful when writing shell scripts
 
 #Job Control
-setopt bg_nice #nice background jobs (make them run with lower priority)
-setopt check_jobs #yell at me if I try to exit the shell with jobs running
-unsetopt notify #notify me of the status of background jobs immediately
+setopt bg_nice           #nice background jobs (run them with lower priority)
+setopt check_jobs        #yell at me if I try to exit zsh with jobs running
+unsetopt notify          #notify me of the status of background jobs immediately
 
 #Prompting
 
 #Scripts and Functions
-setopt octal_zeroes #output octal numbers starting with a 0 instead of 8# 
-setopt c_bases #output hex numbers with 0x rather than 16#
-setopt multios #allows redirection to multiple i/o streams; ie, echo "foo" > file1 > file2 | cat
+setopt octal_zeroes      #output octal numbers starting with a 0 instead of 8# 
+setopt c_bases           #output hex numbers with 0x rather than 16#
+setopt multios           #allows redirection to multiple i/o streams; ie, 
+                         #echo "foo" > file1 > file2 | cat
 
 #Shell Emulation
 
 #Shell State
 
 #Zle - ZSH Line Editor (the thing that takes in your text and runs the shell)
-setopt beep      #zsh will beep when it's mad at me
+setopt beep              #zsh will beep when it's mad at me
 
 ################################################################################
 # ZSH PARAMS + environment vars -- see man zshparam for full descriptions
@@ -199,22 +209,26 @@ alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
 #alias po=popd
 #alias d='dirs -v'
 #alias h=history
-alias grep=egrep            #use extended regular expressions
-alias ls='ls --color=auto'  #make ls pretty
+alias grep=egrep              #use extended regular expressions
+alias ls='ls --color=auto'    #make ls pretty
 alias lsal='ls -al'
-alias lsl='ls -l'           #detail-list view
+alias lsl='ls -l'             #detail-list view
 alias dir=lsl
-alias lsa='ls -a'           #list all
-alias lsd='ls -d *(-/DN)'  #list directories
-alias lsh='ls -ld .*'       #list hidden
-alias :q='exit'             #quit out of the shell like from vim
+alias lsa='ls -a'             #list all
+alias lsd='ls -d *(-/DN)'     #list directories
+alias lsh='ls -ld .*'         #list hidden
+alias :q='exit'               #quit out of the shell like from vim
 alias :Q='exit'
-alias gdba='gdb --args'     #call GDB with args automatically set
+alias gdba='gdb --args'       #call GDB with args automatically set
 alias asdf='setxkbmap -model pc104 -layout us -variant dvorak'  #asdf->dvorak 
 alias aoeu='setxkbmap -model pc104 -layout us'                  #aoeu->qwerty
-alias diff='diff -bBr'      #ignore whitespace, recursively compare directories
-alias hglu='hg log -r 0:' #upside down.  That way, even if there are many revisions, the important revision is visible
-alias sizeof='du -csh'        #disk usage.  Calculate the total; show only a summary and don't recursively print; print size in human readable format rather than in bytes
+alias diff='diff -bBr'        #ignore whitespace.  ignore blank lines.  
+                              #recursively compare directories
+alias hglu='hg log -r 0:'     #hg log up. upside down.  That way, even with
+                              #many revisions, the most recent one is visible
+alias sizeof='du -csh'        #disk usage.  Calculate the total; show only a 
+                              #summary and don't recursively print; print size 
+                              #in human readable format rather than in bytes
 alias processes='echo "did you mean ps?"'
 
 # Global aliases -- These do not have to be at the beginning of the command line
@@ -226,14 +240,15 @@ alias processes='echo "did you mean ps?"'
 
 #Suffix Aliases -- run the command whenever the alias is a suffix
 #From http://grml.org/zsh/zsh-lovers.html
-#alias -s tex=vim #if I type foobar.tex, it will run the command vim foobar.tex
+#alias -s tex=vim             #if I type foobar.tex, it will run the command 
+#                             #vim foobar.tex
 
 ################################################################################
 # KEYBINDINGS
 ################################################################################
 
-bindkey -v #vim keybindings
-#bindkey -e #emacs keybindings
+bindkey -v                 #vim keybindings
+#bindkey -e                #emacs keybindings
 
 #bindkey '^X^Z' universal-argument ' ' magic-space
 #bindkey '^X^A' vi-find-prev-char-skip
@@ -242,8 +257,8 @@ bindkey -v #vim keybindings
 #bindkey -s '\M-/' \\\\
 #bindkey -s '\M-=' \|
 
-bindkey ' ' magic-space    # also do history expansion on space
-bindkey '^I' complete-word # complete on tab, leave expansion to _expand
+bindkey ' ' magic-space    #also do history expansion on space
+bindkey '^I' complete-word #complete on tab, leave expansion to _expand
 
 
 ################################################################################
@@ -341,7 +356,8 @@ mesg n #don't accept messages from other people because they mess up the screen
 # the overall functioning of the shell
 ################################################################################
 
-#alias srrun="./sr -u samking -T '1-router 2-server' -s vns-2.stanford.edu -r rtable.vrhost -l log" #cs144 SR running command
+#alias srrun="./sr -u samking -T '1-router 2-server' -s vns-2.stanford.edu -r \
+#             rtable.vrhost -l log" #cs144 SR running command
 #export PATH=$PATH:/usr/class/cs140/`uname -m`/bin  #cs140 bin folder for pintos
-#export NNTPSERVER=usenet.stanford.edu #usenet server to use
+#export NNTPSERVER=usenet.stanford.edu #stanford usenet server to use
 
