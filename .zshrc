@@ -10,13 +10,15 @@
 # Note that /etc/zshenv is read before ~/.zshenv, and the /etc versions of other
 # files are similarly read before their dot files.
 #
+# There are many resources online to help you make your shell how you want it.
+# http://grml.org/zsh/zsh-lovers.html has a good compilation of many resources,
+# including many of the ones cited below.
+#
 # This file was created by Sam King <samking@cs.stanford.edu>.  Feel free to
 # modify, distribute, and enjoy it.  Also let me know if you discover any other
 # cool tricks.
 # If I got anything from your zshrc online and forgot to credit you, please let
 # me know!
-# TODO: go through specific todos and find out what line is causing the group
-# id error in myth.  it is in here somewhere...
 ################################################################################
 
 ################################################################################
@@ -25,6 +27,8 @@
 # compinstall, but that would destroy everything inside the "The following 
 # lines..." comment.
 # They mostly involve expansion and completion.
+# To see how to write your own completion functions (if they aren't built in),
+# check out http://www.linux-mag.com/id/1106/
 ################################################################################
 
 # The following lines were added by compinstall
@@ -54,11 +58,14 @@ zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
 # command for process lists, the local web server details and host completion
-# TODO: hosts to use for completion
-#hosts=(`hostname` ftp.math.gatech.edu prep.ai.mit.edu wuarchive.wustl.edu)
+
+# hosts is an array (something inside () is an array in zsh) of all of the
+# servers I want to be able to use tab completion to complete
+hosts=(myth.stanford.edu corn.stanford.edu)
 #zstyle ':completion:*:processes' command 'ps -o pid,s,nice,stime,args'
 #zstyle ':completion:*:urls' local 'www' '/var/www/htdocs' 'public_html'
 zstyle '*' hosts $hosts
+#TODO: login users
 
 # Filename suffixes to ignore during completion (except after rm command)
 zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' \
@@ -67,6 +74,7 @@ zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' \
 # ignore completion functions (until the _ignored completer)
 zstyle ':completion:*:functions' ignored-patterns '_*'
 
+#allow tab completion for command line options
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
@@ -209,11 +217,16 @@ alias hglu='hg log -r 0:' #upside down.  That way, even if there are many revisi
 alias sizeof='du -csh'        #disk usage.  Calculate the total; show only a summary and don't recursively print; print size in human readable format rather than in bytes
 alias processes='echo "did you mean ps?"'
 
-# Global aliases -- These do not have to be
-# at the beginning of the command line.
+# Global aliases -- These do not have to be at the beginning of the command line
+# That means that if you have these aliased characters anywhere, they will be 
+# replaced by zsh.
 #alias -g M='|more'
 #alias -g H='|head'
 #alias -g T='|tail'
+
+#Suffix Aliases -- run the command whenever the alias is a suffix
+#From http://grml.org/zsh/zsh-lovers.html
+#alias -s tex=vim #if I type foobar.tex, it will run the command vim foobar.tex
 
 ################################################################################
 # KEYBINDINGS
@@ -300,19 +313,6 @@ typeset -U path cdpath fpath manpath
 ################################################################################
 # From Ubuntu .bashrc
 ################################################################################
-
-# sudo hint
-if [ ! -e "$HOME/.sudo_as_admin_successful" ]; then
-  case " $(groups) " in *\ admin\ *)
-    if [ -x /usr/bin/sudo ]; then
-	cat <<-EOF
-	To run a command as administrator (user "root"), use "sudo <command>".
-	See "man sudo_root" for details.
-	
-	EOF
-    fi
-  esac
-fi
 
 # if the command-not-found package is installed, use it
 if [ -x /usr/lib/command-not-found -o -x /usr/share/command-not-found ]; then
