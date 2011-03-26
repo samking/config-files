@@ -29,6 +29,7 @@
 # They mostly involve expansion and completion.
 # To see how to write your own completion functions (if they aren't built in),
 # check out http://www.linux-mag.com/id/1106/
+# Also, see man zshcompsys for more on compinit and completion generally
 ################################################################################
 
 # The following lines were added by compinstall
@@ -59,13 +60,23 @@ zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
 # command for process lists, the local web server details and host completion
 
-# hosts is an array (something inside () is an array in zsh) of all of the
-# servers I want to be able to use tab completion to complete
-hosts=(myth.stanford.edu corn.stanford.edu)
+#hosts is an array (something inside () is an array in zsh) of all of the
+#servers I want to be able to use tab completion to complete.  
+#You can also use accounts to set the names of accounts to autocomplete, 
+#but assocating an account with a remote host allows you to only use certain
+#accounts on certain hosts (ie, if I'm samking@myth.stanford.edu and 
+#samk@shell.uoregon.edu).  
+#There is no need to explicitly include the login name if you only want zsh to
+#autocomplete the remote host.  For instance, if my local login is samking,
+#then it is unnecessary to ssh samking@myth.stanford.edu, and I could instaed
+#set my hosts to
+#hosts=(myth.stanford.edu corn.stanford.edu)
+hosts=(samking@myth.stanford.edu samking@corn.stanford.edu)
+#accounts=(samking)
 #zstyle ':completion:*:processes' command 'ps -o pid,s,nice,stime,args'
 #zstyle ':completion:*:urls' local 'www' '/var/www/htdocs' 'public_html'
 zstyle '*' hosts $hosts
-#TODO: login users
+#zstyle '*' accounts $accounts
 
 # Filename suffixes to ignore during completion (except after rm command)
 zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' \
@@ -80,26 +91,6 @@ autoload -Uz compinit
 #allow tab completion for command line options
 compinit
 # End of lines added by compinstall
-
-################################################################################
-# TODO: FIGURE ME OUT
-################################################################################
-
-# Watch for my friends
-#watch=( $(<~/.friends) )       # watch for people in .friends file
-#watch=(notme)                   # watch for everybody but me
-#LOGCHECK=300                    # check every 5 min for login/logout activity
-#WATCHFMT='%n %a %l from %m at %t.'
-
-#cdpath=(.. ~ ~/src ~/zsh)  #Search path for the cd command
-
-# Use hard limits, except for a smaller stack and no core dumps
-#unlimit
-#limit stack 8192
-#limit core 0
-#limit -s
-
-#umask 077
 
 ################################################################################
 # ZSH OPTIONS -- see man zshoptions for full descriptions
@@ -128,6 +119,9 @@ setopt auto_menu         #when tab completion is ambiguous, use menu completion
 setopt list_beep         #when tab completion is ambiguous, beep
 setopt menu_complete     #when tab completion is ambiguous, zsh automatically 
                          #fills in the first option
+unsetopt list_ambiguous  #when there is an unambiguous prefix, insert that 
+                         #before inserting ambiguous stuff from the menu.
+                         #menu_complete takes precedence over this.
 
 #Expansion and Globbing
 setopt glob              #expand stuff to generate filenames.  
@@ -181,6 +175,15 @@ setopt beep              #zsh will beep when it's mad at me
 #  * TODO: go through params to find ones to add.  make sure that the ones below
 #    are organized.
 ################################################################################
+
+#TODO
+#LOGCHECK=300                    # check every 5 min for login/logout activity
+#WATCHFMT='%n %a %l from %m at %t.'
+# Watch for my friends
+#watch=( $(<~/.friends) )       # watch for people in .friends file
+#watch=(notme)                   # watch for everybody but me
+#cdpath=(.. ~ ~/src ~/zsh)  #Search path for the cd command
+
 
 #manpath=($X11HOME/man /usr/man /usr/lang/man /usr/local/man)
 #export MANPATH
@@ -351,6 +354,14 @@ fi
 ################################################################################
 mesg n #don't accept messages from other people because they mess up the screen
 
+#TODO
+# Use hard limits, except for a smaller stack and no core dumps
+#unlimit
+#limit stack 8192
+#limit core 0
+#limit -s
+
+#umask 077
 ################################################################################
 # TEMPORARY - Commands used for a class or a summer that is not intrinsic to
 # the overall functioning of the shell
