@@ -1,6 +1,9 @@
 ################################################################################
-# Note: ZSH has wonderful man pages and a wonderful sourceforge page.
-# A user's guide to ZSH is available at zsh.sourceforge.net/Guide/zshguide.html
+# There are many resources online to help you make your shell how you want it.
+# http://grml.org/zsh/zsh-lovers.html has a good compilation of many resources,
+# including many of the ones cited below. man zsh has a very complete and well
+# organized set of man pages.  man zshroadmap has a brief intro.  A user's guide
+# to ZSH is available at zsh.sourceforge.net/Guide/zshguide.html
 #
 # The order of login shells is:
 #  * zshenv
@@ -10,13 +13,9 @@
 # Note that /etc/zshenv is read before ~/.zshenv, and the /etc versions of other
 # files are similarly read before their dot files.
 #
-# There are many resources online to help you make your shell how you want it.
-# http://grml.org/zsh/zsh-lovers.html has a good compilation of many resources,
-# including many of the ones cited below.
-#
 # This file was created by Sam King <samking@cs.stanford.edu>.  Feel free to
 # modify, distribute, and enjoy it.  Also let me know if you discover any other
-# cool tricks.
+# cool tricks -- ZSH is too huge for me to know everything about it.
 # If I got anything from your zshrc online and forgot to credit you, please let
 # me know!
 ################################################################################
@@ -172,34 +171,100 @@ setopt beep              #zsh will beep when it's mad at me
 #  * this only contains the params and environment variables that should NOT be
 #    used by noninteractive shells.  Environmental variables that are global
 #    go in zshenv
-#  * TODO: go through params to find ones to add.  make sure that the ones below
-#    are organized.
+#  * CAPITAL means that the parameter will store one value; lowercase means that
+#    the parameter is an array
+#  * Many of the below parameters are commented out because the defaults are
+#    good and we don't want to mess with them.
 ################################################################################
 
-#TODO
-#LOGCHECK=300                    # check every 5 min for login/logout activity
-#WATCHFMT='%n %a %l from %m at %t.'
-# Watch for my friends
-#watch=( $(<~/.friends) )       # watch for people in .friends file
-#watch=(notme)                   # watch for everybody but me
-#cdpath=(.. ~ ~/src ~/zsh)  #Search path for the cd command
+# Directory Stack
+DIRSTACKSIZE=40            #max size of the directory stack. Good for truncating
+                           #dirstack when it might grow very large (ie, when 
+                           #auto_pushd is on)
 
+# History File
+HISTFILE=~/.zsh-histfile   #Save shell history into .zsh-histfile so that we 
+                           #don't lose history (up arrow) when closing the shell
+HISTSIZE=10000             #the number of lines to read from the history file at 
+                           #startup.  The only reason to have this larger than 
+                           #SAVEHIST is as a budffer for saving duplicated 
+                           #history events
+SAVEHIST=10000             #the number of lines to save to history at logout
 
-#manpath=($X11HOME/man /usr/man /usr/lang/man /usr/local/man)
-#export MANPATH
-#export HELPDIR=/usr/local/lib/zsh/help  # directory for run-help function to find docs
+# Completion
+fignore=(.o .c~ .old .pro) #ignores these file types when doing file completion.
+                           #The same as the zstyle.
 
-#export MAIL=/var/spool/mail/$USERNAME
-#MAILCHECK=300
+# Shell Prompt
+# * PROMPT is PS1, the primary prompt string, which is printed before the 
+#   command is read. 
+# * PS2 is printed when the shell needs more info.  Ie, if I type
+#   echo $(( 1 + 1 <enter>
+#   then the shell needs me to close my parentheses.  By default, it will say 
+#   which shell constructs or quotation marks need to be closed.
+# * PS3 is for select loops.
+# * PS4 is for execution trace.
+# * See http://zsh.sourceforge.net/Doc/Release/zsh_12.html#SEC40 for details on 
+#   prompt expansion.
+PROMPT='%B%n@%m%b[%*]%U%~%u%# ' #<b>name@server</b>[time]<u>path</u>$ 
+                                #(ends with # in su mode).  
+#PROMPT2=
+#PROMPT3=
+#PROMPT4=
 
-DIRSTACKSIZE=40 #max size of the directory stack
-fignore=(.o .c~ .old .pro) # ignores these file types when doing file completion.  The same as the zstyle.
+# Display
+#COLUMNS=80                     #Number of columns for printing lists and line 
+                                #editor
+#LINES=40                       #like COLUMNS
+#LISTMAX=0                      #The number of matches to display without 
+                                #prompting.  0 means it only asks if it would 
+                                #go offscreen.
 
-HISTFILE=~/.zsh-histfile #Save shell history into .zsh-histfile so that we don't lose history (up arrow) when closing the shell
-HISTSIZE=10000 #the number of lines to read from the history file at startup
-SAVEHIST=10000 #the number of lines to save to the history file at logout
+#TODO: Make ls use the same color scheme as zsh.  
+# * For a description of how the LS_COLORS environment variable works, check out
+#   http://hintsforums.macworld.com/archive/index.php/t-46719.html
+# * To see the ZSH colors, check out the Colored completion listings section of
+#   man zshmodules 
+#LS_COLORS= 
 
-prompt='%B%n@%m%b[%*]%U%~%u%# ' #<b>name@server</b>[time]<u>path</u>$ (ends with # in su mode)
+# Help
+#not used internally; just sets MANPATH
+#manpath=($X11HOME/man /usr/man /usr/lang/man /usr/local/man) 
+#export MANPATH                         #path to look for man pages.
+#export HELPDIR=/usr/local/lib/zsh/help #directory for run-help function to find docs
+
+# Locale
+# * Locale sets what your output should look like for pretty much everything.
+#   For instance, do you use commas or dots for numbers?  do you use dollars or
+#   euros?  Do you use only ascii or can you use UTF-8?  English or Spanish?  
+# * The OS probably sets this to the correct value by default, so don't mess 
+#   with this unless you are getting weird output.  
+# * If you're using putty, you'll also want to make sure that putty's 
+#   window->translation is set to UTF-8.
+# * LC_ALL sets the locale for everything.  
+# * LANG sets the locale for anything not set by an LC_something field
+# * There are specific LC_ fields if you have a different locale for currency
+#   than for time, for instance.  Check out man zshparam for the full list.
+#export LC_ALL=en_US.UTF-8            #use US English encoded in UTF-8 as the
+                                      #default character encoding locale.  
+
+# Mail
+#mailpath=(/var/spool/mail/$USERNAME) #array of files to check for mail.
+#MAILCHECK=60                         #Check for new mail every minute
+
+# Paths
+#cdpath=(.. ~ ~/src ~/zsh)            #Search path for the cd command
+#path=()                              #array to search for commands (binaries to
+                                      #run). Can use PATH instead.
+#PATH=$PATH:~/bin                     #adds ~/bin to the end of path.  Note the
+                                      #use of the colon as a delimiter.
+
+# Watch for Friends
+#LOGCHECK=300                         #check every 5 min for friend login/logout
+#WATCHFMT='%n %a %l from %m at %t.'   #format of login/logout reports.  See 
+                                      #man zshparam for what this means.
+#watch=(notme)                        #watch for everybody but me
+#watch=( $(<~/.friends) )             #watch for people in .friends file
 
 ################################################################################
 # ALIASES 
@@ -248,6 +313,7 @@ alias processes='echo "did you mean ps?"'
 
 ################################################################################
 # KEYBINDINGS
+# TODO: check out man zshzle
 ################################################################################
 
 bindkey -v                 #vim keybindings
@@ -350,18 +416,49 @@ fi
 
 ################################################################################
 # SHELL COMMANDS TO RUN - these lines will be executed by zsh as if typed at
-# the prompt.
+# the prompt.  If you can't find the man page for a given command, that's 
+# probably because it's built in to the shell.  In that case, you'll need to
+# check out man zshbuiltins
 ################################################################################
-mesg n #don't accept messages from other people because they mess up the screen
+#If messages are enabled with mesg y, then other people can message you using,
+#for example, echo "Hey, Sam" | write samking would write "Hey, Sam" to my 
+#screen.  This will work as a primitive chat feature.  However, it also messes
+#up your screen, so we disable it here.
+mesg n 
 
-#TODO
-# Use hard limits, except for a smaller stack and no core dumps
-#unlimit
+#Processes have resource limits, such as the number of file descriptors or the
+#stack size.  running unlimit with no arguments sets the resource limit for
+#all resources to the hard limit.  If you use -h, the hard limit is removed.
+#if you use -s, the shell limit is removed.  
+#Check the description of limit in man zshbuiltins for a description of all
+#resources that can be limited.  
+#It can be useful to use limits to prevent a buggy process from opening every
+#file on the system or using all available memory with infinite recursion.
+#We unlimit everything since it's more annoying to have a program crash after
+#running for an hour because it ran out of stack space than to run low on 
+#memory and manually kill a process.
+unlimit 
+
+#Manually set the limits that we want
 #limit stack 8192
 #limit core 0
-#limit -s
 
+#umask says what permissions files have when they're created (ie, using touch
+#or mkdir).  If you use symbolic umask such as
+#umask -S u=rw,g=r,o=r
+#then you specify what IS allowed.  In this example, the user can read and
+#write, and group and other can read.  Noone can execute.  
+#When you use octal notation such as
+#umask 022
+#then you specify what is not allowed.  In this case, the group and others
+#CANNOT write to newly created files by default.
+#If you only want yourself to be able to do anything, you can 
 #umask 077
+#to make it so that noone else has any permissions.
+#Either way, your umask will mask against 666, which means that noone will
+#have execute permission by default.
+umask 022
+
 ################################################################################
 # TEMPORARY - Commands used for a class or a summer that is not intrinsic to
 # the overall functioning of the shell
