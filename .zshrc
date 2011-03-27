@@ -72,7 +72,8 @@ zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 #then it is unnecessary to ssh samking@myth.stanford.edu, and I could instaed
 #set my hosts to
 #hosts=(myth.stanford.edu corn.stanford.edu)
-hosts=(samking@myth.stanford.edu samking@corn.stanford.edu)
+hosts=(samking@myth.stanford.edu samking@corn.stanford.edu \
+  samking@xenon.stanford.edu)
 #accounts=(samking)
 #zstyle ':completion:*:processes' command 'ps -o pid,s,nice,stime,args'
 #zstyle ':completion:*:urls' local 'www' '/var/www/htdocs' 'public_html'
