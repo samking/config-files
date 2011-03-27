@@ -3,7 +3,9 @@
 # http://grml.org/zsh/zsh-lovers.html has a good compilation of many resources,
 # including many of the ones cited below. man zsh has a very complete and well
 # organized set of man pages.  man zshroadmap has a brief intro.  A user's guide
-# to ZSH is available at zsh.sourceforge.net/Guide/zshguide.html
+# to ZSH is available at zsh.sourceforge.net/Guide.  
+# http://zsh.sourceforge.net/Doc/ has an online version of the man pages.
+# zshwiki.org is also a good resource.
 #
 # The order of login shells is:
 #  * zshenv
@@ -309,15 +311,26 @@ alias processes='echo "did you mean ps?"'
 #Suffix Aliases -- run the command whenever the alias is a suffix
 #From http://grml.org/zsh/zsh-lovers.html
 #alias -s tex=vim             #if I type foobar.tex, it will run the command 
-#                             #vim foobar.tex
+                              #vim foobar.tex
 
 ################################################################################
 # KEYBINDINGS
-# TODO: check out man zshzle
+#  * Check out man zshzle for more information on key bindings and on the ZSH
+#    Line Editor.
+#  * bindkey -s in-string out-string 
+#    when you type in-string, the line editor gets out-string
+#  * bindkey [-R] in-string command 
+#    when you type in-string, command is run.  -R means that in-string is
+#    treated as a range.
+#  * the man page lists plenty of escape sequences that you can run
+#  * you can use zle and vared for more advanced stuff.  You can also develop
+#    your own widgets that mess with the line editor.
+#  * TODO: customize based on the vim standard keymap
 ################################################################################
 
-bindkey -v                 #vim keybindings
-#bindkey -e                #emacs keybindings
+#bindkey -e                #emacs keymap
+bindkey -v                 #vim insert keymap
+#bindkey -a                #vim command keymap
 
 #bindkey '^X^Z' universal-argument ' ' magic-space
 #bindkey '^X^A' vi-find-prev-char-skip
@@ -357,7 +370,7 @@ typeset -U path cdpath fpath manpath
 #zmodload -ap zsh/mapfile mapfile
 
 ################################################################################
-#ZKBD: http://zshwiki.org/home/zle/bindkeys 
+# ZKBD: see http://zshwiki.org/home/zle/bindkeys 
 ################################################################################
 
 #autoload zkbd
