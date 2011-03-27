@@ -71,7 +71,7 @@ zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 #autocomplete the remote host.  For instance, if my local login is samking,
 #then it is unnecessary to ssh samking@myth.stanford.edu, and I could instaed
 #set my hosts to
-#hosts=(myth.stanford.edu corn.stanford.edu)
+#hosts=(myth.stanford.edu corn.stanford.edu xenon.stanford.edu)
 hosts=(samking@myth.stanford.edu samking@corn.stanford.edu \
   samking@xenon.stanford.edu)
 #accounts=(samking)
