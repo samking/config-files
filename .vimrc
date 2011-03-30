@@ -38,14 +38,14 @@ endif
 " From vim.wikia.com/wiki/Configuring_the_cursor
 " Set a green cursor in insert mode and a red cursor otherwise.
 " Works at least for xterm, rxvt, and gnome (Ubuntu 10.10) terminals.
-if &term =~ "xterm\\|rxvt"
-  "change to red now
-  :silent !echo -ne "\033]12;red\007"  
-  let &t_SI = "\033]12;green\007"      "change to green when insert mode
-  let &t_EI = "\033]12;red\007"        "change to red when exiting insert mode
-  "change to white when exiting to shell
-  autocmd VimLeave * :!echo -ne "\033]12;white\007" 
-endif
+"if &term =~ "xterm\\|rxvt"
+"  "change to red now
+"  :silent !echo -ne "\033]12;red\007"  
+"  let &t_SI = "\033]12;green\007"      "change to green when insert mode
+"  let &t_EI = "\033]12;red\007"        "change to red when exiting insert mode
+"  ""change to white when exiting to shell
+"  autocmd VimLeave * :!echo -ne "\033]12;white\007" 
+"endif
 
 " ****************** ENVIRONMENT ******************* 
 set backspace=indent,eol,start   " backspace for dummys
