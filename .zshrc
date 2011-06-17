@@ -371,7 +371,7 @@ typeset -U path cdpath fpath manpath
 #zmodload -ap zsh/mapfile mapfile
 
 #use Ka-Ping Yee's hg commands
-source .hg.bashrc
+source ~/.hg.bashrc
 
 ################################################################################
 # ZKBD: see http://zshwiki.org/home/zle/bindkeys 
