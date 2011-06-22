@@ -119,7 +119,7 @@ setopt auto_list         #when tab completion is ambiguous, list choices
 setopt auto_menu         #when tab completion is ambiguous, use menu completion
                          #(fill in the next option when you press tab)
 setopt list_beep         #when tab completion is ambiguous, beep
-setopt menu_complete     #when tab completion is ambiguous, zsh automatically
+unsetopt menu_complete   #when tab completion is ambiguous, zsh automatically
                          #fills in the first option
 unsetopt list_ambiguous  #when there is an unambiguous prefix, insert that
                          #before inserting ambiguous stuff from the menu.
