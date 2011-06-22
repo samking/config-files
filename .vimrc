@@ -1,14 +1,14 @@
 "some content from http://spf13.com/content/my-custom-vimrc-file-vim
-" ****************** INITIALIZE ******************* 
+" ****************** INITIALIZE *******************
 set nocompatible                 " must be first line
 filetype plugin indent on        " Automatically detect file types.
 syntax on                        " syntax highlighting
 
-" ****************** VISUAL ******************* 
+" ****************** VISUAL *******************
 "color traditional               " load a colorscheme
 
 " highlight cursor
-hi CursorColumn guibg=#333333    
+hi CursorColumn guibg=#333333
 
 if has('cmdline_info')
     set ruler                    " show the ruler
@@ -19,12 +19,12 @@ endif
 
 if has('statusline')
   set laststatus=2               " always show status line.  1 => only show statusline if >1 window
-  "set statusline=%<%f\ %=\:\b%n%y%m%r%w\ %l,%c%V\ %P " a statusline, also on steroids 
-  "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]  
-  "set statusline=%m%r%h%w\ [pos=%l,%c%V]%=%<[%p%%][buf=%n][hex=\%B][len=%L][eol=%{&ff}][fmt=%Y]\ %F  
-  set statusline=%m%r%h%w\ %l,%c%V%=%<%p%%[b%n][0x%B][len=%L][%{&ff}][%Y]\ %F  
+  "set statusline=%<%f\ %=\:\b%n%y%m%r%w\ %l,%c%V\ %P " a statusline, also on steroids
+  "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+  "set statusline=%m%r%h%w\ [pos=%l,%c%V]%=%<[%p%%][buf=%n][hex=\%B][len=%L][eol=%{&ff}][fmt=%Y]\ %F
+  set statusline=%m%r%h%w\ %l,%c%V%=%<%p%%[b%n][0x%B][len=%L][%{&ff}][%Y]\ %F
 endif
- 
+
 " GVIM- (here instead of .gvimrc)
 if has('gui_running')
   set guioptions-=T              " remove the toolbar
@@ -32,7 +32,7 @@ if has('gui_running')
   colorscheme evening            " use the evening color scheme
   set cursorline                 " highlight current line
   " highlight bg color of current line
-  hi cursorline guibg=#333333    
+  hi cursorline guibg=#333333
 endif
 
 " From vim.wikia.com/wiki/Configuring_the_cursor
@@ -40,14 +40,14 @@ endif
 " Works at least for xterm, rxvt, and gnome (Ubuntu 10.10) terminals.
 "if &term =~ "xterm\\|rxvt"
 "  "change to red now
-"  :silent !echo -ne "\033]12;red\007"  
+"  :silent !echo -ne "\033]12;red\007"
 "  let &t_SI = "\033]12;green\007"      "change to green when insert mode
 "  let &t_EI = "\033]12;red\007"        "change to red when exiting insert mode
 "  ""change to white when exiting to shell
-"  autocmd VimLeave * :!echo -ne "\033]12;white\007" 
+"  autocmd VimLeave * :!echo -ne "\033]12;white\007"
 "endif
 
-" ****************** ENVIRONMENT ******************* 
+" ****************** ENVIRONMENT *******************
 set backspace=indent,eol,start   " backspace for dummys
 set showmatch                    " show matching brackets/parenthesis
 set wildmenu                     " show list instead of just completing
@@ -77,24 +77,24 @@ set encoding=utf-8               " necessary to allow arrows
 "set list
 "set listchars+=eol:¶,tab:-→      " extends:»,trail:·, "extends and precedes are only used for when wrap is disabled.  trail is just weird.
 set tabpagemax=15                " only show 15 tabs
-set winminheight=0               " windows can be 0 line high 
+set winminheight=0               " windows can be 0 line high
 set scrolljump=3                 " lines to scroll when cursor leaves screen
 "set scrolloff=3                 " minimum lines to keep above and below cursor
 "set foldenable                  " auto fold code
 "set foldmethod=marker           " type of folding
 
-" ****************** FORMATTING ******************* 
+" ****************** FORMATTING *******************
 "set nowrap                      " wrap long lines
 set autoindent                   " indent at the same level of the previous line
 set shiftwidth=2                 " use indents of 4 spaces
 "set noexpandtab                 " tabs are tabs, not spaces
 set expandtab                    "turn tabs into spaces
 set tabstop=2                    "number of columns per tab
-"set matchpairs+=<:>             "match, to be used with % 
+"set matchpairs+=<:>             "match, to be used with %
 set pastetoggle=<F12>            "pastetoggle (sane indentation on pastes)
 "set comments=sl:/*,mb:*,elx:*/  "auto format comment blocks
 
-" ****************** GENERAL SHORTCUTS ******************* 
+" ****************** GENERAL SHORTCUTS *******************
 map <C-L> <C-W>_
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
@@ -108,10 +108,10 @@ map:wQ :wq
 map:Wq :wq
 map:Q :q
 
-autocmd bufenter * lcd %:p:h     " change directory the current file's 
+autocmd bufenter * lcd %:p:h     " change directory the current file's
 "autocmd BufWritePost .vimrc source %
 
-" ****************** CODING ******************* 
+" ****************** CODING *******************
 
 if has("autocmd") && exists("+omnifunc")
     autocmd Filetype *
@@ -122,7 +122,7 @@ endif
 
 set completeopt+=menuone         " show preview of function prototype
 
-" ****************** PLUGINS ******************* 
+" ****************** PLUGINS *******************
 ":map <C-F10> <Esc>:vsp<CR>:VTree<CR>
 
 " map Control + F10 to Vtree
