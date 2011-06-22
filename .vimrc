@@ -62,14 +62,23 @@ set whichwrap=b,s,h,l,<,>,[,]    " backspace and cursor keys wrap to
 set ignorecase                   " case insensitive search
 set smartcase                    " case sensitive when uc present
 set backup                       " backups are nice
-set backupdir=~/.vim-backup      " but don't go in current directory
+" a script that sets backupdir and directory, making the directorys if they
+" don't already exist.
+if filereadable($HOME.'/.vim/vimrc-etc/init-backup-dir.vim')
+  source ~/.vim/vimrc-etc/init-backup-dir.vim
+endif
+"set backupdir=~/.vim-backup     " but don't go in current directory
+"set directory=~/.vim-backup     " swap files don't go in current directory
+                                 " ending with // makes it save the file with
+                                 " the full path so that editing two files with
+                                 " the same name in different directories won't
+                                 " cause issues.
 "set backupdir=C:\\Mev\\StandAlones\\Vim\\vim-backup "for windows
 "set foldclose=all
 set writebackup
 " use exteneded regex plugin with '/' to search (%S for substitute)
 "nnoremap / :M/
 "nnoremap ,/ /
-
 
 "*****************DISPLAY***********************
 set nu                           " Line numbers on
@@ -86,13 +95,13 @@ set scrolljump=3                 " lines to scroll when cursor leaves screen
 " ****************** FORMATTING *******************
 "set nowrap                      " wrap long lines
 set autoindent                   " indent at the same level of the previous line
-set shiftwidth=2                 " use indents of 4 spaces
-"set noexpandtab                 " tabs are tabs, not spaces
-set expandtab                    "turn tabs into spaces
-set tabstop=2                    "number of columns per tab
-"set matchpairs+=<:>             "match, to be used with %
-set pastetoggle=<F12>            "pastetoggle (sane indentation on pastes)
-"set comments=sl:/*,mb:*,elx:*/  "auto format comment blocks
+set tabstop=8                    " 8 columns per tab so I notice tabs
+set expandtab                    " turn tabs into spaces
+set shiftwidth=2                 " > and < will (un)indepnt 2 columns
+set softtabstop=2                " when I press 'tab', vim inserts 2 columns
+"set matchpairs+=<:>             " match, to be used with %
+set pastetoggle=<F12>            " pastetoggle (sane indentation on pastes)
+"set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 
 " ****************** GENERAL SHORTCUTS *******************
 map <C-L> <C-W>_
@@ -112,7 +121,6 @@ autocmd bufenter * lcd %:p:h     " change directory the current file's
 "autocmd BufWritePost .vimrc source %
 
 " ****************** CODING *******************
-
 if has("autocmd") && exists("+omnifunc")
     autocmd Filetype *
         \if &omnifunc == "" |
@@ -134,6 +142,4 @@ let g:checksyntax_auto = 1
 "let g:NERDShutUp=1
 
 let b:match_ignorecase = 1
-
-
 

@@ -371,6 +371,7 @@ typeset -U path cdpath fpath manpath
 #zmodload -ap zsh/mapfile mapfile
 
 #use Ka-Ping Yee's hg commands
+#TODO: only source if found
 source ~/.hg.bashrc
 
 ################################################################################
