@@ -11,17 +11,22 @@ syntax on                        " syntax highlighting
 hi CursorColumn guibg=#333333
 
 if has('cmdline_info')
-    set ruler                    " show the ruler
-    set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
-    set showcmd                  " show partial commands in status line and
-                                 " selected characters/lines in visual mode
+  set ruler                    " show the ruler
+  set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
+  set showcmd                  " show partial commands in status line and
+                               " selected characters/lines in visual mode
 endif
 
 if has('statusline')
-  set laststatus=2               " always show status line.  1 => only show statusline if >1 window
-  "set statusline=%<%f\ %=\:\b%n%y%m%r%w\ %l,%c%V\ %P " a statusline, also on steroids
+  set laststatus=2               " always show status line.  1 => only show
+                                 " statusline if >1 window
+  "set statusline=%<%f\ %=\:\b%n%y%m%r%w\ %l,%c%V\ %P
   "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
   "set statusline=%m%r%h%w\ [pos=%l,%c%V]%=%<[%p%%][buf=%n][hex=\%B][len=%L][eol=%{&ff}][fmt=%Y]\ %F
+  "TODO: comment statusline.  break it up over multiple lines using by doing set
+  "statusline+=stuff
+  "then, it can also become modular rather than monolithic.  Also, see
+  "http://stackoverflow.com/questions/164847/what-is-in-your-vimrc/1219104#1219104
   set statusline=%m%r%h%w\ %l,%c%V%=%<%p%%[b%n][0x%B][len=%L][%{&ff}][%Y]\ %F
 endif
 
@@ -51,7 +56,8 @@ endif
 set backspace=indent,eol,start   " backspace for dummys
 set showmatch                    " show matching brackets/parenthesis
 set wildmenu                     " show list instead of just completing
-set wildmode=list:longest,full   " comand <Tab> completion, list matches, then longest common part, then all.
+set wildmode=list:longest,full   " comand <Tab> completion, list matches, then
+                                 " longest common part, then all.
 set shortmess+=filmnrxoOtT       " abbrev. of messages (avoids 'hit enter')
 set showmode                     " display the current mode
 "set spell                       " spell checking on
@@ -74,23 +80,48 @@ endif
                                  " the same name in different directories won't
                                  " cause issues.
 "set backupdir=C:\\Mev\\StandAlones\\Vim\\vim-backup "for windows
+set updatecount=30               " every 30 characters, update the swap file
+set updatetime=1000              " every second, update the swapfile
 "set foldclose=all
 set writebackup
 " use exteneded regex plugin with '/' to search (%S for substitute)
 "nnoremap / :M/
 "nnoremap ,/ /
+set mouse=a                      " Enable the mouse in the console
+set textwidth=80                 " 80 character limit
+set shell=zsh                    " :shell opens zsh
 
 "*****************DISPLAY***********************
 set nu                           " Line numbers on
 set encoding=utf-8               " necessary to allow arrows
 "set list
-"set listchars+=eol:¶,tab:-→      " extends:»,trail:·, "extends and precedes are only used for when wrap is disabled.  trail is just weird.
+"set listchars+=eol:¶,tab:-→     " extends:»,trail:·,
+                                 " extends and precedes are only used for when
+                                 " wrap is disabled.  trail is just weird.
 set tabpagemax=15                " only show 15 tabs
 set winminheight=0               " windows can be 0 line high
 set scrolljump=3                 " lines to scroll when cursor leaves screen
 "set scrolloff=3                 " minimum lines to keep above and below cursor
 "set foldenable                  " auto fold code
 "set foldmethod=marker           " type of folding
+if version >= 703
+  set colorcolumn=+1,+2          " highlights two columns past textwidth
+                                 " acts as a print margin
+endif
+
+" Automatically highlight lines over textwidth characters
+" This may need WinEnter,BufNewFile,BufRead instead of BufWinEnter and match
+" instead of matchadd for old versions of vim.  Examples:
+" http://vim.wikia.com/wiki/Highlight_long_lines
+if &textwidth > 1
+  if version >= 702
+    "highlights everything over 80 characters as an error
+    "autocmd BufWinEnter * let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
+    "highlights all lines with over 80 characters as an error
+    "Ironically, greater than 80 characters
+    autocmd BufWinEnter * let w:m1=matchadd('ErrorMsg', '\v(.*)(%>'.&textwidth.'v.+)@=', -1)
+  endif
+endif
 
 " ****************** FORMATTING *******************
 "set nowrap                      " wrap long lines
@@ -110,7 +141,25 @@ map <C-K> <C-W>k<C-W>_
 "map <S-H> gT
 "map <S-L> gt
 
-" Stupid shift key fixes
+" Y yanks to the end of the line
+map Y y$
+" Q reformats the line
+map Q gq
+"Use gj and gk instead of j and k.  This moves the line up and down visually, so
+"if the line wraps, you will not jump to a different line
+"nnoremap uses normal mode; inoremap is for insert mode
+"http://stackoverflow.com/questions/164847/what-is-in-your-vimrc
+nnoremap <silent> j gj
+nnoremap <silent> k gk
+inoremap <silent> <Down> <Esc>gja
+inoremap <silent> <Up> <Esc>gka
+
+" Going to the next element in a search will center on the line it's found in.
+" http://stackoverflow.com/questions/164847/what-is-in-your-vimrc
+map n nzz
+map N Nzz
+
+" If I accidentally press shift, q and w will still work
 map:W :w
 map:WQ :wq
 map:wQ :wq
@@ -118,14 +167,13 @@ map:Wq :wq
 map:Q :q
 
 autocmd bufenter * lcd %:p:h     " change directory the current file's
-"autocmd BufWritePost .vimrc source %
 
 " ****************** CODING *******************
 if has("autocmd") && exists("+omnifunc")
-    autocmd Filetype *
-        \if &omnifunc == "" |
-        \setlocal omnifunc=syntaxcomplete#Complete |
-        \endif
+  autocmd Filetype *
+    \if &omnifunc == "" |
+    \setlocal omnifunc=syntaxcomplete#Complete |
+    \endif
 endif
 
 set completeopt+=menuone         " show preview of function prototype
@@ -142,4 +190,7 @@ let g:checksyntax_auto = 1
 "let g:NERDShutUp=1
 
 let b:match_ignorecase = 1
+
+"TODO: add fuzzy finder
+"TODO: remap search and replace to \v search and \v replace
 
