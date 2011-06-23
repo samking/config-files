@@ -135,6 +135,12 @@ set pastetoggle=<F12>            " pastetoggle (sane indentation on pastes)
 "set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 
 " ****************** GENERAL SHORTCUTS *******************
+" map lhs rhs replaces lhs with rhs.
+" Each mapping command is associated with a particular mode.  Thus, some map
+" commands will only remap in insert mode and some will only remap in normal
+" mode.
+" You can choose whether a mapping command will map recursively or not.  a
+" 'noremap' is a non recursive version of 'map".
 map <C-L> <C-W>_
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
@@ -166,6 +172,13 @@ map:wQ :wq
 map:Wq :wq
 map:Q :q
 
+" map search and replace to \v search and \v replace.  This is 'very magic'
+" mode, which is close to the Perl way of doing things.  That means that all
+" characters other than a-zA-Z0-9_ will be treated as special characters and
+" will need escaping to be treated literally.
+noremap :%s/ :%s/\v
+noremap / /\v
+
 autocmd bufenter * lcd %:p:h     " change directory the current file's
 
 " ****************** CODING *******************
@@ -192,5 +205,4 @@ let g:checksyntax_auto = 1
 let b:match_ignorecase = 1
 
 "TODO: add fuzzy finder
-"TODO: remap search and replace to \v search and \v replace
 
