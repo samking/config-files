@@ -10,3 +10,5 @@ ignorews = True
 [trusted]
 users = root #will look into current directory's hgrc even if the user who made the hgrc is root rather than me
 
+[extensions]
+graphlog = 
