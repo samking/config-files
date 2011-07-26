@@ -1,14 +1,35 @@
 [ui]
+# This editor will be used when you use hg ci.  If you don't like vim, you
+# should change this.
 editor = vim
+# The username automatically filled in when you use hg ci
 username = Sam King <samking@cs.stanford.edu>
-#merge=meld
+# Use vimdiff, as described below.  You can use other merge tools like meld if
+# you prefer.
+merge=vimdiff
+
+[merge-tools]
+vimdiff.executable = vim
+# This will open vimdiff with four windows (navigate throguh them with ^w h and
+# ^w l).  From left to right, they are the output of the diff, the local
+# (current) copy, the other (one you're merging from) copy, and the base (the
+# common ancestor of both local and other).  vimdiff has :diffget (do) and
+# :diffput (dp) if you only have two tabs open; to only open two, use the
+# +close flag (see http://mercurial.selenic.com/wiki/MergingWithVim)
+vimdiff.args = -d $output $local $other $base 
 
 [diff]
-#messing with white space won't annoy diffs
-ignorews = True
+# messing with white space won't annoy diffs with ignorews on.  However, that
+# causes problems when a tool expects the hg diff to display all changes (ie,
+# codereview.appspot.com)
+# ignorews = True
 
 [trusted]
-users = root #will look into current directory's hgrc even if the user who made the hgrc is root rather than me
+# will look into current directory's hgrc even if the user who made the hgrc is
+# root rather than me
+users = root 
 
 [extensions]
+# Use the graphical log extension to use hg glog, a better log than hg log.
+# It's also necessary for the hgl function in .hg.bashrc.
 graphlog = 
