@@ -281,6 +281,7 @@ alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
 #alias d='dirs -v'
 #alias h=history
 alias grep=egrep              #use extended regular expressions
+#TODO: make color work on macs / BSD too
 alias ls='ls --color=auto'    #make ls pretty
 alias lsal='ls -al'
 alias lsl='ls -l'             #detail-list view
