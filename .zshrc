@@ -281,6 +281,7 @@ alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
 #alias d='dirs -v'
 #alias h=history
 alias grep=egrep              #use extended regular expressions
+alias chmud=chmod             #chmud is a type for chmod
 #TODO: make color work on macs / BSD too
 alias ls='ls --color=auto'    #make ls pretty
 alias lsal='ls -al'
