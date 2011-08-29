@@ -180,8 +180,8 @@ noremap :%s/ :%s/\v
 noremap / /\v
 
 " space folds (in visual mode) and unfolds: http://vim.wikia.com/wiki/Folding
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':'l')<CR>
-vnoremap <Space> zf
+" nnoremap <silent> <Space> @=(foldlevel('.')?'za':'l')<CR>
+" vnoremap <Space> zf
 
 autocmd bufenter * lcd %:p:h     " change directory the current file's
 
