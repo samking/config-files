@@ -105,8 +105,9 @@ set scrolljump=3                 " lines to scroll when cursor leaves screen
 "set foldenable                  " auto fold code
 "set foldmethod=marker           " type of folding
 if version >= 703
-  set colorcolumn=+1,+2          " highlights two columns past textwidth
-                                 " acts as a print margin
+  set colorcolumn=+1             " highlights one column past textwidth to
+                                 " act as a print margin
+ " TODO: add persistent undo support (help undu-persistence)
 endif
 
 " Automatically highlight lines over textwidth characters
