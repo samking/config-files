@@ -280,7 +280,7 @@ alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
 #alias po=popd
 #alias d='dirs -v'
 #alias h=history
-alias grep=egrep              #use extended regular expressions
+alias grep= 'grep -E'         #use extended regular expressions
 alias ls='ls --color=auto'    #make ls pretty
 alias lsal='ls -al'
 alias lsl='ls -l'             #detail-list view
