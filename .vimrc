@@ -43,6 +43,12 @@ endif
 " From vim.wikia.com/wiki/Configuring_the_cursor
 " Set a green cursor in insert mode and a red cursor otherwise.
 " Works at least for xterm, rxvt, and gnome (Ubuntu 10.10) terminals.
+" TODO: Make this work.  Right now, I haven't figured out how to do all of the
+" following:
+"   - make it green when in insert mode
+"   - make it red when not in insert mode
+"   - start out colorized correctly
+"   - turn it back to the color that it started at when I exit vim
 "if &term =~ "xterm\\|rxvt"
 "  "change to red now
 "  :silent !echo -ne "\033]12;red\007"
@@ -107,7 +113,7 @@ set scrolljump=3                 " lines to scroll when cursor leaves screen
 if version >= 703
   set colorcolumn=+1             " highlights one column past textwidth to
                                  " act as a print margin
- " TODO: add persistent undo support (help undu-persistence)
+ " TODO: add persistent undo support (help undo-persistence)
 endif
 
 " Automatically highlight lines over textwidth characters
