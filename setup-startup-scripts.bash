@@ -33,7 +33,8 @@ then
   echo "%include $CONFIG_PATH/.hgrc" >> $HOME/.hgrc
 
   # TODO: figure out what to do with files included by zshrc (.hg.bashrc) and
-  # vimrc (.vim/stuff)
+  # vimrc (.vim/stuff).  
+  # TODO: if ~/.vim not found, make a symbolic link
 fi
 
 # TODO: when this file is ready, the dot files in this directory should be
