@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-echo "This script will add lines in your zshrc, zshenv, vimrc, and hgrc to
-source the files in this repository.  That way, you can have computer specific
-settings (for instance, if you need a command to behave differently on your
-ubuntu machine than on your mac) in your ~/.zshrc and settings that you want on
-all of your computers in the repository.
+echo "This script will add lines in your zshrc, zshenv, vimrc, hgrc, and login
+to source the files in this repository.  That way, you can have computer
+specific settings (for instance, if you need a command to behave differently on
+your ubuntu machine than on your mac) in your ~/.zshrc and settings that you
+want on all of your computers in the repository.
 Also, this makes it easier to update everything.  When there are changes in the
 repository, all you need to do is hg pull.  You won't need to copy anything down
 from your repository to your home directory."
@@ -31,9 +31,11 @@ then
   echo "source $CONFIG_PATH/.zshenv" >> $HOME/.zshenv
   echo "source $CONFIG_PATH/.vimrc" >> $HOME/.vimrc
   echo "%include $CONFIG_PATH/.hgrc" >> $HOME/.hgrc
+  #TODO: source the .login file too
 
   # TODO: figure out what to do with files included by zshrc (.hg.bashrc) and
-  # vimrc (.vim/stuff)
+  # vimrc (.vim/stuff).  
+  # TODO: if ~/.vim not found, make a symbolic link
 fi
 
 # TODO: when this file is ready, the dot files in this directory should be
