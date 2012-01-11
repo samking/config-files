@@ -133,7 +133,7 @@ endif
 " ****************** FORMATTING *******************
 "set nowrap                      " wrap long lines
 set autoindent                   " indent at the same level of the previous line
-set tabstop=8                    " 8 columns per tab so I notice tabs
+set tabstop=2                    " 2 columns per tab
 set expandtab                    " turn tabs into spaces
 set shiftwidth=2                 " > and < will (un)indepnt 2 columns
 set softtabstop=2                " when I press 'tab', vim inserts 2 columns
