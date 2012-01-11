@@ -304,6 +304,9 @@ alias sizeof='du -csh'        #disk usage.  Calculate the total; show only a
                               #in human readable format rather than in bytes
 alias processes='echo "did you mean ps?"'
 
+alias off='xset dpms force off' #turn off the screen
+
+
 # Global aliases -- These do not have to be at the beginning of the command line
 # That means that if you have these aliased characters anywhere, they will be
 # replaced by zsh.
