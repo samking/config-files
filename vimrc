@@ -1,32 +1,32 @@
-"some content from http://spf13.com/content/my-custom-vimrc-file-vim
+" some content from http://spf13.com/content/my-custom-vimrc-file-vim
 " ****************** INITIALIZE *******************
 set nocompatible                 " must be first line
 filetype plugin indent on        " Automatically detect file types.
 syntax on                        " syntax highlighting
 
 " ****************** VISUAL *******************
-"color traditional               " load a colorscheme
+" color traditional              " load a colorscheme
 
 " highlight cursor
 hi CursorColumn guibg=#333333
 
 if has('cmdline_info')
-  set ruler                    " show the ruler
+  set ruler                      " show the ruler
   set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
-  set showcmd                  " show partial commands in status line and
-                               " selected characters/lines in visual mode
+  set showcmd                    " show partial commands in status line and
+                                 " selected characters/lines in visual mode
 endif
 
 if has('statusline')
   set laststatus=2               " always show status line.  1 => only show
                                  " statusline if >1 window
-  "set statusline=%<%f\ %=\:\b%n%y%m%r%w\ %l,%c%V\ %P
-  "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
-  "set statusline=%m%r%h%w\ [pos=%l,%c%V]%=%<[%p%%][buf=%n][hex=\%B][len=%L][eol=%{&ff}][fmt=%Y]\ %F
-  "TODO: comment statusline.  break it up over multiple lines using by doing set
-  "statusline+=stuff
-  "then, it can also become modular rather than monolithic.  Also, see
-  "http://stackoverflow.com/questions/164847/what-is-in-your-vimrc/1219104#1219104
+  " set statusline=%<%f\ %=\:\b%n%y%m%r%w\ %l,%c%V\ %P
+  " set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+  " set statusline=%m%r%h%w\ [pos=%l,%c%V]%=%<[%p%%][buf=%n][hex=\%B][len=%L][eol=%{&ff}][fmt=%Y]\ %F
+  " TODO: comment statusline.  break it up over multiple lines using by doing
+  " set statusline+=stuff
+  " then, it can also become modular rather than monolithic.  Also, see
+  " http://stackoverflow.com/questions/164847/what-is-in-your-vimrc/1219104#1219104
   set statusline=%m%r%h%w\ %l,%c%V%=%<%p%%[b%n][0x%B][len=%L][%{&ff}][%Y]\ %F
 endif
 
@@ -49,14 +49,14 @@ endif
 "   - make it red when not in insert mode
 "   - start out colorized correctly
 "   - turn it back to the color that it started at when I exit vim
-"if &term =~ "xterm\\|rxvt"
-"  "change to red now
-"  :silent !echo -ne "\033]12;red\007"
-"  let &t_SI = "\033]12;green\007"      "change to green when insert mode
-"  let &t_EI = "\033]12;red\007"        "change to red when exiting insert mode
-"  ""change to white when exiting to shell
-"  autocmd VimLeave * :!echo -ne "\033]12;white\007"
-"endif
+" if &term =~ "xterm\\|rxvt"
+"   "change to red now
+"   :silent !echo -ne "\033]12;red\007"
+"   let &t_SI = "\033]12;green\007"      "change to green when insert mode
+"   let &t_EI = "\033]12;red\007"        "change to red when exiting insert mode
+"   ""change to white when exiting to shell
+"   autocmd VimLeave * :!echo -ne "\033]12;white\007"
+" endif
 
 " ****************** ENVIRONMENT *******************
 set backspace=indent,eol,start   " backspace for dummys
@@ -66,50 +66,50 @@ set wildmode=list:longest,full   " comand <Tab> completion, list matches, then
                                  " longest common part, then all.
 set shortmess+=filmnrxoOtT       " abbrev. of messages (avoids 'hit enter')
 set showmode                     " display the current mode
-"set spell                       " spell checking on
+" set spell                      " spell checking on
 set incsearch                    " find as you type search
 set hlsearch                     " highlight search terms
 set autowrite
 set whichwrap=b,s,h,l,<,>,[,]    " backspace and cursor keys wrap to
 set ignorecase                   " case insensitive search
-set smartcase                    " case sensitive when uc present
+set smartcase                    " case sensitive when uppercase present
 set backup                       " backups are nice
+" set backupdir=~/.vim-backup    " but don't go in current directory
+" set directory=~/.vim-backup    " swap files don't go in current directory
+                                 " ending with // makes it save the file with
+                                 " the full path so that editing two files with
+                                 " the same name in different directories won't
+                                 " cause issues.
 " a script that sets backupdir and directory, making the directorys if they
 " don't already exist.
 if filereadable($HOME.'/.vim/vimrc-etc/init-backup-dir.vim')
   source ~/.vim/vimrc-etc/init-backup-dir.vim
 endif
-"set backupdir=~/.vim-backup     " but don't go in current directory
-"set directory=~/.vim-backup     " swap files don't go in current directory
-                                 " ending with // makes it save the file with
-                                 " the full path so that editing two files with
-                                 " the same name in different directories won't
-                                 " cause issues.
-"set backupdir=C:\\Mev\\StandAlones\\Vim\\vim-backup "for windows
 set updatecount=30               " every 30 characters, update the swap file
 set updatetime=1000              " every second, update the swapfile
-"set foldclose=all
+" set foldclose=all
 set writebackup
 " use exteneded regex plugin with '/' to search (%S for substitute)
-"nnoremap / :M/
-"nnoremap ,/ /
+" nnoremap / :M/
+" nnoremap ,/ /
 set mouse=a                      " Enable the mouse in the console
 set textwidth=80                 " 80 character limit
+" CUSTOMIZE(shell)
 set shell=zsh                    " :shell opens zsh
 
 "*****************DISPLAY***********************
 set nu                           " Line numbers on
 set encoding=utf-8               " necessary to allow arrows
-"set list
-"set listchars+=eol:¶,tab:-→     " extends:»,trail:·,
+" set list
+" set listchars+=eol:¶,tab:-→    " extends:»,trail:·,
                                  " extends and precedes are only used for when
                                  " wrap is disabled.  trail is just weird.
 set tabpagemax=15                " only show 15 tabs
 set winminheight=0               " windows can be 0 line high
 set scrolljump=3                 " lines to scroll when cursor leaves screen
-"set scrolloff=3                 " minimum lines to keep above and below cursor
-"set foldenable                  " auto fold code
-"set foldmethod=marker           " type of folding
+" set scrolloff=3                " minimum lines to keep above and below cursor
+" set foldenable                 " auto fold code
+" set foldmethod=marker          " type of folding
 if version >= 703
   set colorcolumn=+1             " highlights one column past textwidth to
                                  " act as a print margin
@@ -122,24 +122,24 @@ endif
 " http://vim.wikia.com/wiki/Highlight_long_lines
 if &textwidth > 1
   if version >= 702
-    "highlights everything over 80 characters as an error
-    "autocmd BufWinEnter * let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
-    "highlights all lines with over 80 characters as an error
-    "Ironically, greater than 80 characters
+    " highlights everything over 80 characters as an error
+    " autocmd BufWinEnter * let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
+    " highlights all lines with over 80 characters as an error
+    " Ironically, greater than 80 characters
     autocmd BufWinEnter * let w:m1=matchadd('ErrorMsg', '\v(.*)(%>'.&textwidth.'v.+)@=', -1)
   endif
 endif
 
 " ****************** FORMATTING *******************
-"set nowrap                      " wrap long lines
+" set nowrap                     " wrap long lines
 set autoindent                   " indent at the same level of the previous line
 set tabstop=2                    " 2 columns per tab
 set expandtab                    " turn tabs into spaces
 set shiftwidth=2                 " > and < will (un)indepnt 2 columns
 set softtabstop=2                " when I press 'tab', vim inserts 2 columns
-"set matchpairs+=<:>             " match, to be used with %
+" set matchpairs+=<:>            " match, to be used with %
 set pastetoggle=<F12>            " pastetoggle (sane indentation on pastes)
-"set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
+" set comments=sl:/*,mb:*,elx:*/ " auto format comment blocks
 
 " ****************** GENERAL SHORTCUTS *******************
 " map lhs rhs replaces lhs with rhs.
@@ -151,17 +151,17 @@ set pastetoggle=<F12>            " pastetoggle (sane indentation on pastes)
 map <C-L> <C-W>_
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
-"map <S-H> gT
-"map <S-L> gt
+" map <S-H> gT
+" map <S-L> gt
 
 " Y yanks to the end of the line
 map Y y$
 " Q reformats the line
 map Q gq
-"Use gj and gk instead of j and k.  This moves the line up and down visually, so
-"if the line wraps, you will not jump to a different line
-"nnoremap uses normal mode; inoremap is for insert mode
-"http://stackoverflow.com/questions/164847/what-is-in-your-vimrc
+" Use gj and gk instead of j and k.  This moves the line up and down visually,
+" so if the line wraps, you will not jump to a different line
+" nnoremap uses normal mode; inoremap is for insert mode
+" http://stackoverflow.com/questions/164847/what-is-in-your-vimrc
 nnoremap <silent> j gj
 nnoremap <silent> k gk
 inoremap <silent> <Down> <Esc>gja
@@ -183,6 +183,7 @@ map:Q :q
 " mode, which is close to the Perl way of doing things.  That means that all
 " characters other than a-zA-Z0-9_ will be treated as special characters and
 " will need escaping to be treated literally.
+" CUSTOMIZE(regex-search-replace-style)
 noremap :%s/ :%s/\v
 noremap / /\v
 
@@ -203,17 +204,16 @@ endif
 set completeopt+=menuone         " show preview of function prototype
 
 " ****************** PLUGINS *******************
-":map <C-F10> <Esc>:vsp<CR>:VTree<CR>
-
 " map Control + F10 to Vtree
+" :map <C-F10> <Esc>:vsp<CR>:VTree<CR>
 
 let g:checksyntax_auto = 1
 
-"comment out line(s) in visual mode
-"vmap  o  :call NERDComment(1, 'toggle')<CR>
-"let g:NERDShutUp=1
+" comment out line(s) in visual mode
+" vmap  o  :call NERDComment(1, 'toggle')<CR>
+" let g:NERDShutUp=1
 
 let b:match_ignorecase = 1
 
-"TODO: add fuzzy finder
+" TODO: add fuzzy finder
 
