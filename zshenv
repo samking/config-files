@@ -7,7 +7,8 @@
 # modify, distribute, and enjoy it.
 ################################################################################
 
+# CUSTOMIZE(shell)
 export SHELL=/bin/zsh
+# CUSTOMIZE(editor)
 export EDITOR=vim
 export VISUAL=vim
-#export PATH=$PATH:/var/lib/gems/1.8/bin/
