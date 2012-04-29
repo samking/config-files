@@ -287,9 +287,19 @@ alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
 # alias h=history
 alias grep='grep -P'          # use Perl style regular expressions
 alias chmud=chmod             # chmud is a typo for chmod
-# TODO: make color work on macs / BSD too
-# CUSTOMIZE(os)
-alias ls='ls --color=auto'    # make ls pretty
+# uname gives the name of the OS
+# Macs, which are BSD based, use -G rather than --color=auto.  This lets us make
+# ls pretty regardless of the OS.
+# from
+# http://superuser.com/questions/243338/how-should-i-automatically-change-my-zshrc-for-different-os
+case `uname` in
+  Darwin)                     # Mac
+    alias ls='ls -G'
+    ;;
+  Linux)
+    alias ls='ls --color=auto'
+    ;;
+esac
 alias lsal='ls -al'
 alias lsl='ls -l'             # detail-list view
 alias dir=lsl
