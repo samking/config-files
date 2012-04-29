@@ -3,13 +3,16 @@ echo "This script will add lines in your zshrc, zshenv, vimrc, hgrc, and login
 to source the files in this repository.  That way, you can have computer
 specific settings (for instance, if you need a command to behave differently on
 your ubuntu machine than on your mac) in your ~/.zshrc and settings that you
-want on all of your computers in the repository.
-Also, this makes it easier to update everything.  When there are changes in the
-repository, all you need to do is hg pull.  You won't need to copy anything down
-from your repository to your home directory.
+want on all of your computers in the repository.  Also, this creates a symbolic
+link to the vim folder.
+This makes it easier to update everything.  When there are changes in the
+repository, all you need to do is hg pull and hg up.  You won't need to copy
+anything down from your repository to your home directory.
 Note that some things in each file are specific to me.  To find a list of those
 places, run the following command:
   grep CUSTOMIZE *
+Also note that gitconfig and gitinclude don't support includes, so you'll need
+to manually copy them.
 "
 
 # For instructions on how to do a confirmation like this, see
@@ -26,20 +29,36 @@ then
   CONFIG_PATH=`pwd`
   popd > /dev/null
 
-  # Append the command to source the relevant files in this repo to the actual
-  # dot files
-  # TODO: don't append to a file if that file already has the same line in it
   # TODO: tell the user what commands we're running as we run them.  Tell the
   #       user when we're done.
-  echo "source $CONFIG_PATH/.zshrc" >> $HOME/zshrc
-  echo "source $CONFIG_PATH/.zshenv" >> $HOME/zshenv
-  echo "source $CONFIG_PATH/.vimrc" >> $HOME/vimrc
-  echo "%include $CONFIG_PATH/.hgrc" >> $HOME/hgrc
-  # TODO: source the .login file too
-  # TODO: gitconfig doesn't support includes, so copy gitconfig and gitignore
 
-  # TODO: figure out what to do with files included by zshrc (.hg.bashrc) and
-  # vimrc (.vim/stuff).  
-  # TODO: if ~/.vim not found, make a symbolic link.  
-  # TODO: If any subfolder of .vim is not found, make a symbolic link.
+  # Append the command to source the relevant files in this repo to the actual
+  # dot files.  Only add the line if the line doesn't already exist
+  if [ \( -z "`grep -s "source $CONFIG_PATH/zshrc" $HOME/.zshrc`" \) ]; then
+    echo "source $CONFIG_PATH/zshrc" >> $HOME/.zshrc
+  fi
+  if [ \( -z "`grep -s "source $CONFIG_PATH/zshenv" $HOME/.zshenv`" \) ]; then
+    echo "source $CONFIG_PATH/zshenv" >> $HOME/.zshenv
+  fi
+  if [ \( -z "`grep -s "source $CONFIG_PATH/vimrc" $HOME/.vimrc`" \) ]; then
+    echo "source $CONFIG_PATH/vimrc" >> $HOME/.vimrc
+  fi
+  if [ \( -z "`grep -s "%include $CONFIG_PATH/hgrc" $HOME/.hgrc`" \) ]; then
+    echo "%include $CONFIG_PATH/hgrc" >> $HOME/.hgrc
+  fi
+  if [ \( -z "`grep -s "source $CONFIG_PATH/login" $HOME/.login`" \) ]; then
+    echo "source $CONFIG_PATH/login" >> $HOME/.login
+  fi
+  # TODO: gitconfig might support includes soon.  When it does, add the include.
+
+  # Creates a symbolic link to the vim folder where backups, temp files,
+  # plugins, and other stuff is stored.
+  # If ~/.vim doesn't exist
+  if [ ! \( -d $HOME/.vim -o -L $HOME/.vim \) ]; then
+    ln -s $CONFIG_PATH/vim -T $HOME/.vim
+  # If we don't link to .vim, we still want the vimrc-etc folder to be linked.
+  # If ~/.vim/vimrc-etc doesn't exist
+  elif [ ! \( -d $HOME/.vim/vimrc-etc -o -L $HOME/.vim/vimrc-etc \) ]; then
+    ln -s $CONFIG_PATH/vim/vimrc-etc -t $HOME/.vim
+  fi
 fi
