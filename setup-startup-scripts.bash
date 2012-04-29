@@ -6,7 +6,11 @@ your ubuntu machine than on your mac) in your ~/.zshrc and settings that you
 want on all of your computers in the repository.
 Also, this makes it easier to update everything.  When there are changes in the
 repository, all you need to do is hg pull.  You won't need to copy anything down
-from your repository to your home directory."
+from your repository to your home directory.
+Note that some things in each file are specific to me.  To find a list of those
+places, run the following command:
+  grep CUSTOMIZE *
+"
 
 # For instructions on how to do a confirmation like this, see
 # http://stackoverflow.com/questions/1885525/how-do-i-prompt-a-user-for-confirmation-in-bash-script
@@ -31,9 +35,11 @@ then
   echo "source $CONFIG_PATH/.zshenv" >> $HOME/zshenv
   echo "source $CONFIG_PATH/.vimrc" >> $HOME/vimrc
   echo "%include $CONFIG_PATH/.hgrc" >> $HOME/hgrc
-  #TODO: source the .login file too
+  # TODO: source the .login file too
+  # TODO: gitconfig doesn't support includes, so copy gitconfig and gitignore
 
   # TODO: figure out what to do with files included by zshrc (.hg.bashrc) and
   # vimrc (.vim/stuff).  
-  # TODO: if ~/.vim not found, make a symbolic link
+  # TODO: if ~/.vim not found, make a symbolic link.  
+  # TODO: If any subfolder of .vim is not found, make a symbolic link.
 fi
