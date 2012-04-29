@@ -1,0 +1,12 @@
+# use shell globbing syntax rather than regex
+syntax: glob
+
+# We don't want to check in personal files in the .vim
+# vim/backup has a backup of every file that gets saved
+vim/backup/*
+# vim/tmp has a backup of every file that is currently being edited
+vim/tmp/*
+# vim/.netrwhist is a history file for netrw (see
+# http://stackoverflow.com/questions/9850360/what-is-netrwhist
+# for a description of what the file does)
+vim/.netrwhist

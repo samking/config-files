@@ -27,17 +27,13 @@ then
   # TODO: don't append to a file if that file already has the same line in it
   # TODO: tell the user what commands we're running as we run them.  Tell the
   #       user when we're done.
-  echo "source $CONFIG_PATH/.zshrc" >> $HOME/.zshrc
-  echo "source $CONFIG_PATH/.zshenv" >> $HOME/.zshenv
-  echo "source $CONFIG_PATH/.vimrc" >> $HOME/.vimrc
-  echo "%include $CONFIG_PATH/.hgrc" >> $HOME/.hgrc
+  echo "source $CONFIG_PATH/.zshrc" >> $HOME/zshrc
+  echo "source $CONFIG_PATH/.zshenv" >> $HOME/zshenv
+  echo "source $CONFIG_PATH/.vimrc" >> $HOME/vimrc
+  echo "%include $CONFIG_PATH/.hgrc" >> $HOME/hgrc
   #TODO: source the .login file too
 
   # TODO: figure out what to do with files included by zshrc (.hg.bashrc) and
   # vimrc (.vim/stuff).  
   # TODO: if ~/.vim not found, make a symbolic link
 fi
-
-# TODO: when this file is ready, the dot files in this directory should be
-# un-dotted to make them easier to see
-

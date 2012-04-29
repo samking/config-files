@@ -381,7 +381,7 @@ typeset -U path cdpath fpath manpath
 #dirname $0 will get the directory of the script.
 #we assume that .hg.bashrc will be in the same directory as .zshrc
 ZSHRC_DIR="$( dirname "$0" )"
-source $ZSHRC_DIR/.hg.bashrc
+source $ZSHRC_DIR/hg-commands-for-bash.bashrc
 
 ################################################################################
 # ZKBD: see http://zshwiki.org/home/zle/bindkeys
