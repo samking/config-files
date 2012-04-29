@@ -264,7 +264,7 @@ PROMPT='%B%n@%m%b[%*]%U%~%u%# ' # <b>name@server</b>[time]<u>path</u>$
 # cdpath=(.. ~ ~/src ~/zsh)            # Search path for the cd command
 # path=()                              # array to search for commands (binaries
                                        # to run). Can use PATH instead.
-# PATH=$PATH:~/bin                     # adds ~/bin to the end of path.  Note
+PATH=$PATH:~/bin                       # adds ~/bin to the end of path.  Note
                                        # the use of the colon as a delimiter.
 
 # Watch for Friends
