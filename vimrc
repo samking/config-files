@@ -126,7 +126,7 @@ if &textwidth > 1
     " autocmd BufWinEnter * let w:m1=matchadd('ErrorMsg', '\%>80v.\+', -1)
     " highlights all lines with over 80 characters as an error
     " Ironically, greater than 80 characters
-    autocmd BufWinEnter * let w:m1=matchadd('ErrorMsg', '\v(.*)(%>'.&textwidth.'v.+)@=', -1)
+    " autocmd BufWinEnter * let w:m1=matchadd('ErrorMsg', '\v(.*)(%>'.&textwidth.'v.+)@=', -1)
   endif
 endif
 
