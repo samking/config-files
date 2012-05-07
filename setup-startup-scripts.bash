@@ -10,7 +10,7 @@ repository, all you need to do is hg pull and hg up.  You won't need to copy
 anything down from your repository to your home directory.
 Note that some things in each file are specific to me.  To find a list of those
 places, run the following command:
-  grep CUSTOMIZE *
+  grep -n CUSTOMIZE *
 Also note that gitconfig and gitinclude don't support includes, so you'll need
 to manually copy them.
 "
