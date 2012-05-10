@@ -216,4 +216,7 @@ let g:checksyntax_auto = 1
 let b:match_ignorecase = 1
 
 " TODO: add fuzzy finder
+" TODO: when I exit insert mode and have caps lock on, something is probably
+" wrong.  Either turn caps lock off or alert me of the fact that caps lock is
+" still on.
 
