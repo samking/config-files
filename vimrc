@@ -133,7 +133,7 @@ endif
 " ****************** FORMATTING *******************
 " set nowrap                     " wrap long lines
 "set autoindent                  " indent at the same level of the previous line
-set smartindent                  " do more indentation after indenty things
+"set smartindent                 " do more indentation after indenty things
                                  " NOTE: can interfere with filetype indentation
 set tabstop=2                    " 2 columns per tab
 set expandtab                    " turn tabs into spaces
