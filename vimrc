@@ -74,21 +74,19 @@ set whichwrap=b,s,h,l,<,>,[,]    " backspace and cursor keys wrap to
 set ignorecase                   " case insensitive search
 set smartcase                    " case sensitive when uppercase present
 set backup                       " backups are nice
-" set backupdir=~/.vim-backup    " but don't go in current directory
-" set directory=~/.vim-backup    " swap files don't go in current directory
-                                 " ending with // makes it save the file with
-                                 " the full path so that editing two files with
-                                 " the same name in different directories won't
-                                 " cause issues.
-" a script that sets backupdir and directory, making the directorys if they
-" don't already exist.
-if filereadable($HOME.'/.vim/vimrc-etc/init-backup-dir.vim')
-  source ~/.vim/vimrc-etc/init-backup-dir.vim
+if version >= 703
+  set undofile                   " save undo history to a file so that you can
+endif                            " still undo even after closing a file
+" we have a script to set backupdir, directory, and undodir, making the
+" directories if they don't already exist.  Setting these options ensures that
+" the backup, swap, and undo files won't clutter the working directory.
+if filereadable($HOME.'/.vim/vimrc-etc/init-file-dirs.vim')
+  source ~/.vim/vimrc-etc/init-file-dirs.vim
 endif
 set updatecount=30               " every 30 characters, update the swap file
 set updatetime=1000              " every second, update the swapfile
 " set foldclose=all
-set writebackup
+set writebackup                  " backup before overwriting a file
 " use exteneded regex plugin with '/' to search (%S for substitute)
 " nnoremap / :M/
 " nnoremap ,/ /
@@ -113,7 +111,6 @@ set scrolljump=3                 " lines to scroll when cursor leaves screen
 if version >= 703
   set colorcolumn=+1             " highlights one column past textwidth to
                                  " act as a print margin
- " TODO: add persistent undo support (help undo-persistence)
 endif
 
 " Automatically highlight lines over textwidth characters
