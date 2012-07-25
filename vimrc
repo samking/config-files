@@ -106,7 +106,7 @@ set tabpagemax=15                " only show 15 tabs
 set winminheight=0               " windows can be 0 line high
 set scrolljump=3                 " lines to scroll when cursor leaves screen
 " set scrolloff=3                " minimum lines to keep above and below cursor
-" set foldenable                 " auto fold code
+set nofoldenable                 " auto fold code
 " set foldmethod=marker          " type of folding
 if version >= 703
   set colorcolumn=+1             " highlights one column past textwidth to
@@ -213,6 +213,17 @@ let g:checksyntax_auto = 1
 " let g:NERDShutUp=1
 
 let b:match_ignorecase = 1
+
+" Super Tab default should use user completion if it can (ie, if Eclim returns
+" results) and default completion otherwise.
+autocmd FileType *
+  \ if &completefunc != '' |
+  \   call SuperTabChain(&completefunc, "<c-p>") |
+  \   call SuperTabSetDefaultCompletionType("<c-x><c-u>") |
+  \ endif
+" Normally, supertab will open up a preview window when completing.  We want
+" that window to close.
+let g:SuperTabClosePreviewOnPopupClose = 1
 
 " TODO: add fuzzy finder
 " TODO: when I exit insert mode and have caps lock on, something is probably

@@ -16,3 +16,5 @@ vim/.netrwhist
 # machine rather than using existing config files.
 vim/eclim/*
 vim/plugin/eclim.vim
+# Vimball delete records are user specific
+vim/.VimballRecord
