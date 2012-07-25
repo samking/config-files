@@ -15,6 +15,8 @@ Also note that gitconfig, gitinclude, and eclimrc don't support includes, so
 you'll need to manually copy them.
 For the sake of visibility, none of these are dot files.  However, in your home
 folder, they must be dot files.  
+Vim is set up to work well with Eclim (which adds Eclipse features to Vim), but
+you actually need to install it.  Go to eclim.org to install it.
 "
 
 # For instructions on how to do a confirmation like this, see
