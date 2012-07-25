@@ -1,0 +1,3 @@
+# The workspace directory should be ~/.eclipse-workspace and not ~/workspace
+# CUSTOMIZE(eclipse-workspace)
+osgi.instance.area.default=@user.home/.eclipse-workspace

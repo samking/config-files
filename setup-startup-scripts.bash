@@ -11,8 +11,10 @@ anything down from your repository to your home directory.
 Note that some things in each file are specific to me.  To find a list of those
 places, run the following command:
   grep -n CUSTOMIZE *
-Also note that gitconfig and gitinclude don't support includes, so you'll need
-to manually copy them.
+Also note that gitconfig, gitinclude, and eclimrc don't support includes, so
+you'll need to manually copy them.
+For the sake of visibility, none of these are dot files.  However, in your home
+folder, they must be dot files.  
 "
 
 # For instructions on how to do a confirmation like this, see

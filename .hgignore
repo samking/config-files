@@ -10,3 +10,7 @@ vim/tmp/*
 # http://stackoverflow.com/questions/9850360/what-is-netrwhist
 # for a description of what the file does)
 vim/.netrwhist
+# These contain Eclim settings.  It's probably safer to install Eclim on any new
+# machine rather than using existing config files.
+vim/eclim/*
+vim/plugin/eclim.vim
