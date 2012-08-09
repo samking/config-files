@@ -69,7 +69,7 @@ set showmode                     " display the current mode
 " set spell                      " spell checking on
 set incsearch                    " find as you type search
 set hlsearch                     " highlight search terms
-set autowrite
+set autowrite                    " automatically save before some commands
 set whichwrap=b,s,h,l,<,>,[,]    " backspace and cursor keys wrap to
 set ignorecase                   " case insensitive search
 set smartcase                    " case sensitive when uppercase present
@@ -94,6 +94,11 @@ set mouse=a                      " Enable the mouse in the console
 set textwidth=80                 " 80 character limit
 " CUSTOMIZE(shell)
 set shell=zsh                    " :shell opens zsh
+
+" Vim jumps to the last position when opening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 "*****************DISPLAY***********************
 set nu                           " Line numbers on
