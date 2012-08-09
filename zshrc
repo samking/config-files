@@ -285,12 +285,14 @@ alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
 # alias po=popd
 # alias d='dirs -v'
 # alias h=history
+alias sudo='sudo '            # Normally, only the first word in a command is
+                              # checked for aliases.  A trailing space makes it
+                              # check the next word.  So, sudo works with
+                              # aliases now.
 alias grep='grep -P'          # use Perl style regular expressions
 alias chmud=chmod             # chmud is a typo for chmod
-# uname gives the name of the OS
-# Macs, which are BSD based, use -G rather than --color=auto.  This lets us make
-# ls pretty regardless of the OS.
-# from
+# uname gives the name of the OS.  Macs, which are BSD based, use -G rather than
+# --color=auto.  This lets us make ls pretty regardless of the OS.  from
 # http://superuser.com/questions/243338/how-should-i-automatically-change-my-zshrc-for-different-os
 case `uname` in
   Darwin)                     # Mac
@@ -320,6 +322,29 @@ alias sizeof='du -csh'        # disk usage.  Calculate the total; show only a
                               # in human readable format rather than in bytes
 alias processes='echo "did you mean ps?"'
 alias off='xset dpms force off' #turn off the screen
+
+# if vim is installed, we probably never want to use vi
+if [ `command -v vim` ]; then
+  alias vi=vim
+fi
+
+# if the editor is set to vim, then sudo vi should probably be sudo -e, which
+# will read the vimrc even if sudo sets the $HOME variable to /root
+# We can't do this with a normal alias because multiword aliases don't work: see
+# http://superuser.com/questions/105375/bash-spaces-in-alias-name
+sudo() { 
+  # If my editor is vim and the first argument in my sudo command is vi or vim
+  if [[ $EDITOR == "vim" && ( $1 == "vim" || $1 == "vi" ) ]]; then 
+    # $@ takes every argument.  ${@[2,-1]} takes every argument starting with 2
+    # (array slices in ZSH work similar to Python, so -1 represents the last
+    # element).  We want to turn "sudo vim foo bar baz" into "sudoedit foo bar
+    # baz", so going from 2 to the end is what we want.
+    command sudoedit "${@[2,-1]}"
+  else 
+    # Otherwise, just do the sudo command normally
+    command sudo "$@"
+  fi
+}
 
 # Global aliases -- These do not have to be at the beginning of the command line
 # That means that if you have these aliased characters anywhere, they will be
