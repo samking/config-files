@@ -426,6 +426,8 @@ source $ZSHRC_DIR/hg-commands-for-bash.bashrc
 ################################################################################
 # ZKBD: see http://zshwiki.org/home/zle/bindkeys
 # TODO: move this into its own file
+# TODO: now, these keys (ie, page up) don't work (perhaps due to vim mode in
+#       ZLE?).  fix it.
 ################################################################################
 
 # autoload zkbd
