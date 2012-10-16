@@ -290,6 +290,7 @@ alias sudo='sudo '            # Normally, only the first word in a command is
                               # check the next word.  So, sudo works with
                               # aliases now.
 alias grep='grep -P'          # use Perl style regular expressions
+alias grep='grep --color'     # color the output from Grep
 alias chmud=chmod             # chmud is a typo for chmod
 # uname gives the name of the OS.  Macs, which are BSD based, use -G rather than
 # --color=auto.  This lets us make ls pretty regardless of the OS.  from
