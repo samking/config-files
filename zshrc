@@ -285,7 +285,7 @@ alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
 # alias po=popd
 # alias d='dirs -v'
 # alias h=history
-alias sudo='sudo '            # Normally, only the first word in a command is
+# alias sudo='sudo '          # Normally, only the first word in a command is
                               # checked for aliases.  A trailing space makes it
                               # check the next word.  So, sudo works with
                               # aliases now.
