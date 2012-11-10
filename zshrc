@@ -374,9 +374,9 @@ sudo() {
 #  * TODO: customize based on the vim standard keymap
 ################################################################################
 
-# CUSTOMIZE(editor)
-# bindkey -e                # emacs keymap
-bindkey -v                  # vim insert keymap
+# CUSTOMIZE(shell-text-editor)
+bindkey -e                  # emacs keymap
+# bindkey -v                # vim insert keymap
 # bindkey -a                # vim command keymap
 
 # bindkey '^X^Z' universal-argument ' ' magic-space
