@@ -387,8 +387,21 @@ bindkey -e                  # emacs keymap
 # bindkey '^Z' accept-and-hold
 # bindkey -s '\M-/' \\\\
 # bindkey -s '\M-=' \|
-# [[ -n "${key[PageUp]}"  ]]  && bindkey  "${key[PageUp]}"  vi-backward-blank-word
-# [[ -n "${key[PageDown]}"  ]]  && bindkey  "${key[PageDown]}"  vi-forward-blank-word
+
+# See http://zshwiki.org/home/zle/bindkeys
+# We make a ZKBD compatible key hash, which we can use for binding special keys
+# We don't need to do this for most keys because they work by default.
+typeset -A key
+key[PageUp]=${terminfo[kpp]}
+key[PageDown]=${terminfo[knp]}
+# Page Up and Page Down should go to the next and previous words
+[[ -n "${key[PageUp]}" ]]  && bindkey "${key[PageUp]}" vi-backward-blank-word
+[[ -n "${key[PageDown]}" ]]  && bindkey "${key[PageDown]}" vi-forward-blank-word
+# Ctrl + Left and Right should do the same.  terminfo doesn't know about control
+# sequences, so we have to do this manually.
+# TODO: is there a way to do this that's portable?
+bindkey '[1;5D' vi-backward-blank-word
+bindkey '[1;5C' vi-forward-blank-word
 
 bindkey ' ' magic-space     # also do history expansion on space
 bindkey '^I' complete-word  # complete on tab, leave expansion to _expand
