@@ -371,7 +371,9 @@ sudo() {
 #  * the man page lists plenty of escape sequences that you can run
 #  * you can use zle and vared for more advanced stuff.  You can also develop
 #    your own widgets that mess with the line editor.
-#  * TODO: customize based on the vim standard keymap
+#  * ZKBD also provides some nice functionality to check out.  
+#    See http://zshwiki.org/home/zle/bindkeys
+#  * TODO: customize as desired
 ################################################################################
 
 # CUSTOMIZE(shell-text-editor)
@@ -385,6 +387,8 @@ bindkey -e                  # emacs keymap
 # bindkey '^Z' accept-and-hold
 # bindkey -s '\M-/' \\\\
 # bindkey -s '\M-=' \|
+# [[ -n "${key[PageUp]}"  ]]  && bindkey  "${key[PageUp]}"  vi-backward-blank-word
+# [[ -n "${key[PageDown]}"  ]]  && bindkey  "${key[PageDown]}"  vi-forward-blank-word
 
 bindkey ' ' magic-space     # also do history expansion on space
 bindkey '^I' complete-word  # complete on tab, leave expansion to _expand
@@ -423,47 +427,6 @@ typeset -U path cdpath fpath manpath
 # .zshrc
 ZSHRC_DIR="$( dirname "$0" )"
 source $ZSHRC_DIR/hg-commands-for-bash.bashrc
-
-################################################################################
-# ZKBD: see http://zshwiki.org/home/zle/bindkeys
-# TODO: move this into its own file
-# TODO: now, these keys (ie, page up) don't work (perhaps due to vim mode in
-#       ZLE?).  fix it.
-################################################################################
-
-# autoload zkbd
-# function zkbd_file() {
-#     [[ -f ~/.zkbd/${TERM}-${VENDOR}-${OSTYPE} ]] && printf '%s' ~/".zkbd/${TERM}-${VENDOR}-${OSTYPE}" && return 0
-#     [[ -f ~/.zkbd/${TERM}-${DISPLAY}          ]] && printf '%s' ~/".zkbd/${TERM}-${DISPLAY}"          && return 0
-#     return 1
-# }
-# 
-# [[ ! -d ~/.zkbd ]] && mkdir ~/.zkbd
-# keyfile=$(zkbd_file)
-# ret=$?
-# if [[ ${ret} -ne 0 ]]; then
-#     zkbd
-#     keyfile=$(zkbd_file)
-#     ret=$?
-# fi
-# if [[ ${ret} -eq 0 ]] ; then
-#     source "${keyfile}"
-# else
-#     printf 'Failed to setup keys using zkbd.\n'
-# fi
-# unfunction zkbd_file; unset keyfile ret
-# 
-# # setup key accordingly
-# [[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
-# [[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
-# [[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
-# [[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
-# [[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-history
-# [[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-history
-# [[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
-# [[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
-# [[ -n "${key[PageUp]}"  ]]  && bindkey  "${key[PageUp]}"  vi-backward-blank-word
-# [[ -n "${key[PageDown]}"  ]]  && bindkey  "${key[PageDown]}"  vi-forward-blank-word
 
 ################################################################################
 # From Ubuntu .bashrc
@@ -535,9 +498,3 @@ umask 022
 # TEMPORARY - Commands used for a class or a summer that is not intrinsic to
 # the overall functioning of the shell
 ################################################################################
-
-# alias srrun="./sr -u samking -T '1-router 2-server' -s vns-2.stanford.edu -r \
-#              rtable.vrhost -l log" #cs144 SR running command
-# export PATH=$PATH:/usr/class/cs140/`uname -m`/bin  # cs140 pintos bin folder
-# export NNTPSERVER=usenet.stanford.edu # stanford usenet server
-
