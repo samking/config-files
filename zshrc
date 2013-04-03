@@ -74,7 +74,7 @@ zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 # set my hosts to
 # hosts=(myth.stanford.edu corn.stanford.edu xenon.stanford.edu)
 # CUSTOMIZE(hosts)
-hosts=(samking@pup.stanford.edu samking@myth.stanford.edu \
+hosts=(samking@myth.stanford.edu \
        samking@corn.stanford.edu samking@xenon.stanford.edu \
        samking@codethechange.org)
 #accounts=(samking)
@@ -148,6 +148,8 @@ setopt correct           # correct my bad spelling of commands
 setopt correct_all       # correct my bad spelling of all argument son a line
 # CUSTOMIZE(keyboard_layout)
 setopt dvorak            # zsh knows that I use dvorak when correcting my typos
+                         # NOTE: if you use qwerty, just delete this line; there
+                         # is no "qwerty" option that needs to be set.
 setopt print_exit_value  # prints the exit value of commands when it's not 0
                          # (success); useful when writing shell scripts
 
