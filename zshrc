@@ -75,9 +75,9 @@ zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 # set my hosts to
 # hosts=(myth.stanford.edu corn.stanford.edu xenon.stanford.edu)
 # CUSTOMIZE(hosts)
-hosts=(samking@myth.stanford.edu \
-       samking@corn.stanford.edu samking@xenon.stanford.edu \
-       samking@codethechange.org)
+hosts=(samking@myth.stanford.edu samking@corn.stanford.edu \
+       samking@xenon.stanford.edu \
+       samking@codethechange.org samking@samking.org samking@practicalunix.org)
 #accounts=(samking)
 #zstyle ':completion:*:processes' command 'ps -o pid,s,nice,stime,args'
 #zstyle ':completion:*:urls' local 'www' '/var/www/htdocs' 'public_html'
