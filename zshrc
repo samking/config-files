@@ -6,6 +6,7 @@
 # to ZSH is available at zsh.sourceforge.net/Guide.
 # http://zsh.sourceforge.net/Doc/ has an online version of the man pages.
 # zshwiki.org is also a good resource.
+# http://mywiki.wooledge.org/BashFAQ/031 explains how test, [, and [[ work
 #
 # The order of login shells is:
 #  * zshenv
@@ -442,6 +443,16 @@ typeset -U path cdpath fpath manpath
 # .zshrc
 ZSHRC_DIR="$( dirname "$0" )"
 source $ZSHRC_DIR/hg-commands-for-bash.bashrc
+
+# Utility function to make random passwords
+# from http://www.cyberciti.biz/faq/linux-random-password-generator/
+genpasswd() {
+  local len=$1
+  if [[ $len == "" ]]; then
+    len=16
+  fi
+  tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${len} | xargs
+}
 
 ################################################################################
 # From Ubuntu .bashrc
