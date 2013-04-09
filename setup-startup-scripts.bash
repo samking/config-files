@@ -59,10 +59,10 @@ then
   # plugins, and other stuff is stored.
   # If ~/.vim doesn't exist
   if [ ! \( -d $HOME/.vim -o -L $HOME/.vim \) ]; then
-    ln -s $CONFIG_PATH/vim -T $HOME/.vim
+    ln -s $CONFIG_PATH/vim $HOME/.vim
   # If we don't link to .vim, we still want the vimrc-etc folder to be linked.
   # If ~/.vim/vimrc-etc doesn't exist
   elif [ ! \( -d $HOME/.vim/vimrc-etc -o -L $HOME/.vim/vimrc-etc \) ]; then
-    ln -s $CONFIG_PATH/vim/vimrc-etc -t $HOME/.vim
+    ln -s $CONFIG_PATH/vim/vimrc-etc $HOME/.vim/vimrc-etc
   fi
 fi
