@@ -292,8 +292,7 @@ alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
                               # checked for aliases.  A trailing space makes it
                               # check the next word.  So, sudo works with
                               # aliases now.
-alias grep='grep -P'          # use Perl style regular expressions
-alias grep='grep --color'     # color the output from Grep
+alias grep='grep -P --color'  # use Perl style regular expressions and colorize
 alias chmud=chmod             # chmud is a typo for chmod
 # uname gives the name of the OS.  Macs, which are BSD based, use -G rather than
 # --color=auto.  This lets us make ls pretty regardless of the OS.  from
