@@ -230,6 +230,19 @@ PROMPT='%B%n@%m%b[%*]%U%~%u%# ' # <b>name@server</b>[time]<u>path</u>$
                                  # prompting.  0 means it only asks if it would
                                  # go offscreen.
 
+# Terminal Title
+# If I'm using an xterm terminal, then I will display
+#   username@hostname: directory
+# if I'm just running zsh, and I will display
+#   username@hostname (command): directory
+# if I'm running another command (like vim).
+case $TERM in
+  xterm*)
+    precmd ()  { print -Pn "\e]0;%n@%m: %~\a"}
+    preexec () { print -Pn "\e]0;%n@%m ($1): %~\a" }
+    ;;
+esac
+
 # TODO: Make ls use the same color scheme as zsh.
 # * For a description of how the LS_COLORS environment variable works, check out
 #   http://hintsforums.macworld.com/archive/index.php/t-46719.html
