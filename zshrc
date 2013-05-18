@@ -65,24 +65,18 @@ zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
 # hosts is an array (something inside () is an array in zsh) of all of the
 # servers I want to be able to use tab completion to complete.
-# You can also use accounts to set the names of accounts to autocomplete,
-# but assocating an account with a remote host allows you to only use certain
-# accounts on certain hosts (ie, if I'm samking@myth.stanford.edu and
-# samk@shell.uoregon.edu).
-# There is no need to explicitly include the login name if you only want zsh to
-# autocomplete the remote host.  For instance, if my local login is samking,
-# then it is unnecessary to ssh samking@myth.stanford.edu, and I could instead
-# set my hosts to
-# hosts=(myth.stanford.edu corn.stanford.edu xenon.stanford.edu)
+# You can also use the users array to set the usernames for those hosts.
 # CUSTOMIZE(hosts)
-hosts=(samking@myth.stanford.edu samking@corn.stanford.edu \
-       samking@xenon.stanford.edu \
-       samking@codethechange.org samking@samking.org samking@practicalunix.org)
+hosts=(myth.stanford.edu corn.stanford.edu xenon.stanford.edu \
+       codethechange.org samking.org practicalunix.org)
+# CUSTOMIZE(username)
+users=(samking)
 #accounts=(samking)
 #zstyle ':completion:*:processes' command 'ps -o pid,s,nice,stime,args'
 #zstyle ':completion:*:urls' local 'www' '/var/www/htdocs' 'public_html'
-zstyle '*' hosts $hosts
 #zstyle '*' accounts $accounts
+zstyle '*' hosts $hosts
+zstyle '*' users $users
 
 # Filename suffixes to ignore during completion (except after rm command)
 zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' \
