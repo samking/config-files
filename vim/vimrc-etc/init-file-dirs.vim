@@ -3,6 +3,9 @@
 "      the swap directory to ~/.vim/tmp/
 "      the undo directory to ~/.vim/undo/
 " Makes those directories if they aren't found
+" Since these directories can contain sensitive information (eg, passwords
+" embedded in files), they should only be readable by the user, so we set
+" permissions to 0700.
 function InitFileDirs()
   let separator = "."
   let parent = $HOME .'/' . separator . 'vim/'
@@ -11,16 +14,16 @@ function InitFileDirs()
   let undo   = parent . 'undo/'
   if exists("*mkdir")
     if !isdirectory(parent)
-      call mkdir(parent)
+      call mkdir(parent, "", 0700)
     endif
     if !isdirectory(backup)
-      call mkdir(backup)
+      call mkdir(backup, "", 0700)
     endif
     if !isdirectory(tmp)
-      call mkdir(tmp)
+      call mkdir(tmp, "", 0700)
     endif
     if !isdirectory(undo)
-      call mkdir(undo)
+      call mkdir(undo, "", 0700)
     endif
   endif
   let missing_dir = 0
