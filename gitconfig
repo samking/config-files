@@ -1,4 +1,8 @@
 [user]
 # CUSTOMIZE(name)
-name = Sam King
-email = samking@cs.stanford.edu
+  name = Sam King
+  email = samking@cs.stanford.edu
+[push]
+	default = simple
+
+# vim: ft=gitconfig
