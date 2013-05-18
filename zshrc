@@ -443,6 +443,7 @@ typeset -U path cdpath fpath manpath
 
 # use Ka-Ping Yee's hg commands
 # TODO: only source if found
+# TODO: add git corollaries for them
 # within a script, $0 refers to the directory of the path of the script.  
 # dirname $0 will get the directory of the script.
 # we assume that hg-commands-for-bash.bashrc will be in the same directory as
