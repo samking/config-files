@@ -15,3 +15,4 @@
 /vim/plugin/eclim.vim
 # Vimball delete records are user specific
 /vim/.VimballRecord
+/.hg/
