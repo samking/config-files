@@ -1,22 +1,17 @@
-# use shell globbing syntax rather than regex
-syntax: glob
-
 # We don't want to check in personal files in the .vim
 # vim/backup has a backup of every file that gets saved
-vim/backup/*
+/vim/backup/*
 # vim/tmp has a backup of every file that is currently being edited
-vim/tmp/*
+/vim/tmp/*
 # vim/undo has the undo history of every file
-vim/undo/*
+/vim/undo/*
 # vim/.netrwhist is a history file for netrw (see
 # http://stackoverflow.com/questions/9850360/what-is-netrwhist
 # for a description of what the file does)
-vim/.netrwhist
+/vim/.netrwhist
 # These contain Eclim settings.  It's probably safer to install Eclim on any new
 # machine rather than using existing config files.
-vim/eclim/*
-vim/plugin/eclim.vim
+/vim/eclim/*
+/vim/plugin/eclim.vim
 # Vimball delete records are user specific
-vim/.VimballRecord
-# in case the git and hg repos are coexisting
-.git/
+/vim/.VimballRecord
