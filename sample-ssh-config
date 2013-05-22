@@ -1,0 +1,17 @@
+# I use the following as my ~/.ssh/config file.  It lets me use
+#   ssh ctc
+# instead of typing out ssh samking@codethechange.org.  You can also specify
+# other things.  Check out man ssh_config for more info.
+Host ctc
+  HostName codethechange.org
+  User samking
+  Port 22
+  IdentityFile ~/.ssh/id_rsa
+
+Host me
+  HostName samking.org
+  User samking
+  Port 22
+  IdentityFile ~/.ssh/id_rsa
+
+# vim: ft=sshconfig
