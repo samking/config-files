@@ -54,6 +54,7 @@ then
     echo "source $CONFIG_PATH/login" >> $HOME/.login
   fi
   # TODO: gitconfig might support includes soon.  When it does, add the include.
+  # TODO: add option to copy over files even if there isn't an include directive
 
   # Creates a symbolic link to the vim folder where backups, temp files,
   # plugins, and other stuff is stored.
