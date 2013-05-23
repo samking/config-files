@@ -208,10 +208,22 @@ fignore=(.o .c~ .old .pro) # ignores these file types when doing file completion
 #   which shell constructs or quotation marks need to be closed.
 # * PS3 is for select loops.
 # * PS4 is for execution trace.
-# * See http://zsh.sourceforge.net/Doc/Release/zsh_12.html#SEC40 for details on
-#   prompt expansion.
-PROMPT='%B%n@%m%b[%*]%U%~%u%# ' # <b>name@server</b>[time]<u>path</u>$
-                                # (ends with # in su mode).
+# * See http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html for details
+#   on prompt expansion.
+# PROMPT='%B%n@%m%b[%*]%U%~%u%# ' # <b>name@server</b>[time]<u>path</u>$
+#                                 # (ends with # in su mode).
+# PROMPT='%B%n@%m%b[%*]%U%~%u%# ' # <b>name@server</b>[time]<u>path</u>$
+#                                 # (ends with # in su mode).
+# Modified from
+# http://stackoverflow.com/questions/689765/how-can-i-change-the-color-of-my-prompt-in-zsh-different-from-normal-text
+autoload -U colors && colors    # Let me use colors rather than character codes
+# name@server time path %
+# Respectively, they are green, cyan, blue, and red.  Thus, all of the
+# information is colored differently so that I can easily tell them apart, and
+# everything is a soft color except the path, which is the only piece of
+# information that I usually care about.
+PROMPT="%{$fg[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m %{$fg[blue]%}%* %{$fg[red]%}%~ %{$reset_color%}%# "
+
 # PROMPT2=
 # PROMPT3=
 # PROMPT4=
