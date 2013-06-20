@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# From http://ubuntuforums.org/showthread.php?t=1999255
 sleep 5
 xinput set-int-prop "SynPS/2 Synaptics TouchPad" "Two-Finger Scrolling" 8 1
 xinput set-int-prop "SynPS/2 Synaptics TouchPad" "Synaptics Two-Finger Scrolling" 8 1 1
