@@ -50,17 +50,26 @@ def remove_extra_backups(backup_period):
       path = backup_dir + '/' + filename
       os.remove(path)
 
-def main():
-  parser = argparse.ArgumentParser(
-      description='Save mysql backups in: ' + BACKUP_ROOT)
-  parser.add_argument('--backup-period', choices=ALLOWED_PERIODS, required=True) 
-  args = parser.parse_args()
+def check_path():
+  """Checks that the backup paths all exist.  If the backup root doesn't exist,
+  errors out.  If the subfolders don't exist, makes them."""
   if not os.path.exists(BACKUP_ROOT):
     print 'ERROR: the BACKUP_ROOT doesn\'t exist.  Right now, it\'s:'
     print '  ' + BACKUP_ROOT
     print 'If that looks wrong, you should customize it.'
     sys.exit(1)
+  for backup_period in ALLOWED_PERIODS:
+    backup_dir = BACKUP_ROOT + backup_period
+    if not os.path.exists(backup_dir):
+      os.makedirs(backup_dir)
+
+def main():
+  parser = argparse.ArgumentParser(
+      description='Save mysql backups in: ' + BACKUP_ROOT)
+  parser.add_argument('--backup-period', choices=ALLOWED_PERIODS, required=True) 
+  args = parser.parse_args()
   backup_period = args.backup_period
+  check_path()
   add_backup(backup_period)
   remove_extra_backups(backup_period)
 
