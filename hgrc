@@ -6,7 +6,7 @@
 editor = vim
 # The username automatically filled in when you use hg ci
 # CUSTOMIZE(name)
-username = Sam King <samking@cs.stanford.edu>
+username = Sam King <sam@samking.org>
 # Use vimdiff, as described below.  You can use other merge tools like meld if
 # you prefer.
 # CUSTOMIZE(diff)

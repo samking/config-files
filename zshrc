@@ -16,7 +16,7 @@
 # Note that /etc/zshenv is read before ~/.zshenv, and the /etc versions of other
 # files are similarly read before their dot files.
 #
-# This file was created by Sam King <samking@cs.stanford.edu>.  Feel free to
+# This file was created by Sam King <sam@samking.org>.  Feel free to
 # modify, distribute, and enjoy it.  Also let me know if you discover any other
 # cool tricks -- ZSH is too huge for me to know everything about it.
 # If I got anything from your zshrc online and forgot to credit you, please let
