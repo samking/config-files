@@ -1,0 +1,6 @@
+# run with
+# --defaults-extra-file=/path/to/this/file/backup-mysql.my.cnf
+[client]
+user=backup
+password=some-password-here
+all-databases
