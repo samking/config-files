@@ -10,5 +10,5 @@
 # CUSTOMIZE(shell)
 export SHELL=/bin/zsh
 # CUSTOMIZE(editor)
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=/usr/bin/vim
+export VISUAL=/usr/bin/vim
