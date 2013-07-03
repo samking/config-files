@@ -140,7 +140,10 @@ setopt extended_history  # add timestamps to history.  For a rough idea of the
 # Input / Output
 setopt aliases           # use aliases defined below
 setopt correct           # correct my bad spelling of commands
-setopt correct_all       # correct my bad spelling of all argument son a line
+unsetopt correct_all     # correct my bad spelling of all argument son a line
+                         # This is unset because it is fairly common to have an
+                         # argument that is similar to a file in the current
+                         # directory (eg, sudo git would correct to .git)
 # CUSTOMIZE(keyboard_layout)
 setopt dvorak            # zsh knows that I use dvorak when correcting my typos
                          # NOTE: if you use qwerty, just delete this line; there
