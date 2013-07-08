@@ -524,10 +524,12 @@ mesg n
 # resources that can be limited.
 # It can be useful to use limits to prevent a buggy process from opening every
 # file on the system or using all available memory with infinite recursion.
-# We unlimit everything since it's more annoying to have a program crash after
-# running for an hour because it ran out of stack space than to run low on
-# memory and manually kill a process.
-unlimit
+# You might want to unlimit everything because it's more annoying to have a
+# program crash after running for an hour because it ran out of stack space than
+# to run low on memory and manually kill a process.  On the other hand, it is a
+# good practice in general not to allow every program to use a ton of stack
+# (especially in a multithreaded environment, for instance).
+# unlimit
 
 # Manually set the limits that we want
 # limit stack 8192
