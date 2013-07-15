@@ -5,7 +5,6 @@
 # TODO: check to see if www-data is actually the default server user on their
 # system.
 # TODO: check to see if the path they provide is a valid Drupal install
-# TODO: test that this actually works
 
 import argparse
 import getpass
@@ -23,10 +22,10 @@ class DefaultHelpParser(argparse.ArgumentParser):
     self.print_help()
     sys.exit(2)
 
-def print_and_Run(args):
+def print_and_run(args):
   """Prints a command and runs it."""
-  subprocess.call(args)
   print ' '.join(args)
+  subprocess.call(args)
 
 def fix_general_permissions(owner, server_user, drupal_path):
   """Fix the permissions for all files in the root Drupal folder."""
