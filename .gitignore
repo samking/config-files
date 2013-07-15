@@ -5,6 +5,8 @@
 /vim/tmp/*
 # vim/undo has the undo history of every file
 /vim/undo/*
+# vim/cache has a most recently used list and maybe other stuff
+/vim/cache/*
 # vim/.netrwhist is a history file for netrw (see
 # http://stackoverflow.com/questions/9850360/what-is-netrwhist
 # for a description of what the file does)
