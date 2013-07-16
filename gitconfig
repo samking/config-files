@@ -7,8 +7,5 @@
 [color]
   # colorize by default
 	ui = true
-[core]
-  # necessary to prevent git log from truncating, rather than wrapping, lines.
-	pager = less -r
 
 # vim: ft=gitconfig
