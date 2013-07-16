@@ -2,6 +2,9 @@
 # By Sam King <sam@samking.org>
 # Modified from Mercurial scripts by Ka-Ping Yee <kpy@google.com> 
 # (available in in hg-commands-for-bash.bashrc) 
+# NOTE: This is a shell alias, so it should not be sourced in any type of git
+# file.  It should be sourced in your shell config file (you can see how this
+# file is sourced in the zshrc).
 
 gitl() {
   # TODO: right now, this truncates long lines (because git passes -FXRS to
