@@ -457,15 +457,14 @@ typeset -U path cdpath fpath manpath
 # zmodload -a zsh/zprof zprof
 # zmodload -ap zsh/mapfile mapfile
 
-# use Ka-Ping Yee's hg commands
-# TODO: only source if found
-# TODO: add git corollaries for them
 # within a script, $0 refers to the directory of the path of the script.  
 # dirname $0 will get the directory of the script.
-# we assume that hg-commands-for-bash.bashrc will be in the same directory as
-# .zshrc
 ZSHRC_DIR="$( dirname "$0" )"
+# Use extra commands for hg and git
+# we assume that the files will be in the same directory as .zshrc
+# TODO: only source if found
 source $ZSHRC_DIR/hg-commands-for-bash.bashrc
+source $ZSHRC_DIR/git-commands-for-bash.bashrc
 
 # Utility function to make random passwords
 # from http://www.cyberciti.biz/faq/linux-random-password-generator/
