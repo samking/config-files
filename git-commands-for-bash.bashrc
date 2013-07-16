@@ -30,6 +30,6 @@ gitl() {
   # Set color to color = %Ccolor or %C(color) -- format depends on which color
   # Reset color = %Creset
   FORMAT='%C(yellow)%H%Creset %Cgreen%ae%Creset %Cblue%ad%Creset'
-  FORMAT=$FORMAT'%C(cyan)%d%Creset%n%s%n  %b'
+  FORMAT=$FORMAT'%C(cyan)%d%Creset%n%s%n%b'
   git log --date=short --graph "$@" --format=$FORMAT
 }
