@@ -43,7 +43,9 @@ def fix_sites_permissions(owner, server_user, drupal_path):
   sites_path = drupal_path + '/sites'
   print_and_run(['find', sites_path, '-type', 'd', '-name', 'files', '-exec', 
                  'chmod', 'ug=rwx,o=', '{}', ';'])
-  for directory in glob.iglob(sites_path + '/*/files'):
+  directories = glob.glob(sites_path + '/*/files')
+  directories.extend(glob.glob(sites_path + '/*/private'))
+  for directory in directories:
     print_and_run(['find', directory, '-type', 'd', '-exec',
                    'chmod', 'ug=rwx,o=', '{}', ';'])
     print_and_run(['find', directory, '-type', 'f', '-exec',
