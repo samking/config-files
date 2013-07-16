@@ -37,16 +37,6 @@ def fix_general_permissions(owner, server_user, drupal_path):
   print_and_run(['find', drupal_path, '-type', 'f', '-exec', 
                  'chmod', 'u=rw,g=r,o=', '{}', ';'])
 
-def fix_misc_permissions(drupal_path):
-  """Fix the permissions for .git, .gitignore, and random text files in the
-  install folder."""
-  files = ['.git', '.gitignore', 'CHANGELOG.txt', 'COPYRIGHT.txt',
-           'INSTALL.mysql.txt', 'INSTALL.sqlite.txt', 'INSTALL.pgsql.txt',
-           'INSTALL.txt', 'LICENSE.txt', 'MAINTAINERS.txt', 'README.txt',
-           'UPGRADE.txt']
-  for filename in files:
-    print_and_run(['chmod', '-R', 'u=rwx,og=', filename])
-
 def fix_sites_permissions(owner, server_user, drupal_path):
   """Fix the permissions for all files in the sites folder.  Must be in the root
   Drupal folder to start."""
@@ -82,8 +72,8 @@ def main():
   server_user = args.server_user
   drupal_path = args.drupal_path
   fix_general_permissions(owner, server_user, drupal_path)
-  fix_misc_permissions(drupal_path)
   fix_sites_permissions(owner, server_user, drupal_path)
+  # TODO: fix the permissions in the git directory separately
 
 if __name__ == "__main__":
   main()
