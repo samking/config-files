@@ -313,7 +313,7 @@ alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
 # alias sudo='sudo '          # Normally, only the first word in a command is
                               # checked for aliases.  A trailing space makes it
                               # check the next word.  So, sudo works with
-                              # aliases now.
+                              # aliases now.  However, this causes other issues.
 alias grep='grep -P --color'  # use Perl style regular expressions and colorize
 alias chmud=chmod             # chmud is a typo for chmod
 # uname gives the name of the OS.  Macs, which are BSD based, use -G rather than
@@ -402,6 +402,8 @@ sudo() {
 ################################################################################
 
 # CUSTOMIZE(shell-text-editor)
+# Note: I type in vim, but I still prefer emacs style for the ZSH line editor.
+# Usually, when I'm not in vim, I don't expect modal editing.
 bindkey -e                  # emacs keymap
 # bindkey -v                # vim insert keymap
 # bindkey -a                # vim command keymap
