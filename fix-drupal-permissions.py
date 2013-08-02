@@ -5,7 +5,6 @@
 # TODO: check to see if www-data is actually the default server user on their
 # system.
 # TODO: check to see if the path they provide is a valid Drupal install
-# TODO: test that this actually works
 
 import argparse
 import getpass
@@ -23,10 +22,10 @@ class DefaultHelpParser(argparse.ArgumentParser):
     self.print_help()
     sys.exit(2)
 
-def print_and_Run(args):
+def print_and_run(args):
   """Prints a command and runs it."""
-  subprocess.call(args)
   print ' '.join(args)
+  subprocess.call(args)
 
 def fix_general_permissions(owner, server_user, drupal_path):
   """Fix the permissions for all files in the root Drupal folder."""
@@ -38,26 +37,18 @@ def fix_general_permissions(owner, server_user, drupal_path):
   print_and_run(['find', drupal_path, '-type', 'f', '-exec', 
                  'chmod', 'u=rw,g=r,o=', '{}', ';'])
 
-def fix_misc_permissions(drupal_path):
-  """Fix the permissions for .git, .gitignore, and random text files in the
-  install folder."""
-  files = ['.git', '.gitignore', 'CHANGELOG.txt', 'COPYRIGHT.txt',
-           'INSTALL.mysql.txt', 'INSTALL.sqlite.txt', 'INSTALL.pgsql.txt',
-           'INSTALL.txt', 'LICENSE.txt', 'MAINTAINERS.txt', 'README.txt',
-           'UPGRADE.txt']
-  for filename in files:
-    print_and_run(['chmod', '-R', 'u=rwx,og=', filename])
-
 def fix_sites_permissions(owner, server_user, drupal_path):
   """Fix the permissions for all files in the sites folder.  Must be in the root
   Drupal folder to start."""
   sites_path = drupal_path + '/sites'
   print_and_run(['find', sites_path, '-type', 'd', '-name', 'files', '-exec', 
                  'chmod', 'ug=rwx,o=', '{}', ';'])
-  for directory in glob.iglob(sites_path + '/*/files'):
+  directories = glob.glob(sites_path + '/*/files')
+  directories.extend(glob.glob(sites_path + '/*/private'))
+  for directory in directories:
     print_and_run(['find', directory, '-type', 'd', '-exec',
                    'chmod', 'ug=rwx,o=', '{}', ';'])
-    print_and_run(['find', directory, '-type' 'f', '-exec',
+    print_and_run(['find', directory, '-type', 'f', '-exec',
                    'chmod', 'ug=rw,o=', '{}', ';'])
 
 def main():
@@ -83,8 +74,8 @@ def main():
   server_user = args.server_user
   drupal_path = args.drupal_path
   fix_general_permissions(owner, server_user, drupal_path)
-  fix_misc_permissions(drupal_path)
   fix_sites_permissions(owner, server_user, drupal_path)
+  # TODO: fix the permissions in the git directory separately
 
 if __name__ == "__main__":
   main()

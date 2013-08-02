@@ -1,6 +1,9 @@
 # Handy shell functions and aliases for Mercurial development.
 # Source this file in your .bash_profile.
 # By Ka-Ping Yee (kpy@google.com)
+# NOTE: This is a shell alias, so it should not be sourced in any type of git
+# file.  It should be sourced in your shell config file (you can see how this
+# file is sourced in the zshrc).
 
 # Show a compact and nicely coloured graphical changelog.
 hgl() {

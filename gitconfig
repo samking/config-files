@@ -4,5 +4,8 @@
   email = sam@samking.org
 [push]
 	default = simple
+[color]
+  # colorize by default
+	ui = true
 
 # vim: ft=gitconfig
