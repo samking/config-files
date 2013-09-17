@@ -12,3 +12,8 @@ export SHELL=/bin/zsh
 # CUSTOMIZE(editor)
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
+# CUSTOMIZE(timezone)
+# You can find the correct text for your timezone by running tzselect
+TZ='America/Los_Angeles' 
+export TZ
+
