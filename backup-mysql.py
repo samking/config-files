@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # Saves a mysql database backup into the dropbox backups folder.
-# To get a crontab working with this, figure out where the script is and run 
+# To get a crontab working with this, figure out where the script is and run
 #   crontab -e
 # and add the following lines:
 #   @hourly  python /path/to/this/script/backup-mysql.py --backup-period hourly

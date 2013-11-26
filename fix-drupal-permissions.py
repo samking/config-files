@@ -32,16 +32,16 @@ def fix_general_permissions(owner, server_user, drupal_path):
   print_and_run(['sudo', 'chown', '-R', owner + ':' + server_user, drupal_path])
   # there is no shell parsing these commands, so we don't need to worry about
   # the curly braces or semicolon being interpreted by the shell
-  print_and_run(['find', drupal_path, '-type', 'd', '-exec', 
+  print_and_run(['find', drupal_path, '-type', 'd', '-exec',
                  'chmod', 'u=rwx,g=rx,o=', '{}', ';'])
-  print_and_run(['find', drupal_path, '-type', 'f', '-exec', 
+  print_and_run(['find', drupal_path, '-type', 'f', '-exec',
                  'chmod', 'u=rw,g=r,o=', '{}', ';'])
 
 def fix_sites_permissions(owner, server_user, drupal_path):
   """Fix the permissions for all files in the sites folder.  Must be in the root
   Drupal folder to start."""
   sites_path = drupal_path + '/sites'
-  print_and_run(['find', sites_path, '-type', 'd', '-name', 'files', '-exec', 
+  print_and_run(['find', sites_path, '-type', 'd', '-name', 'files', '-exec',
                  'chmod', 'ug=rwx,o=', '{}', ';'])
   directories = glob.glob(sites_path + '/*/files')
   directories.extend(glob.glob(sites_path + '/*/private'))
@@ -56,19 +56,19 @@ def main():
       description='Fix drupal permissions and print out commands as we go',
       formatter_class=argparse.ArgumentDefaultsHelpFormatter)
   parser.add_argument(
-      '--owner', default=getpass.getuser(), 
-      help='The user to be assigned as the owner. This is probably you. ' + 
-           'For security purposes, it should not be the Apache or server ' + 
+      '--owner', default=getpass.getuser(),
+      help='The user to be assigned as the owner. This is probably you. ' +
+           'For security purposes, it should not be the Apache or server ' +
            'user. If it is not you, you will need to run this as sudo.')
   parser.add_argument(
-      '--server-user', default='www-data', 
-      help='The username of the web server serving Drupal files. For an ' + 
-      'Apache install on Ubuntu, this will be www-data.' ) 
+      '--server-user', default='www-data',
+      help='The username of the web server serving Drupal files. For an ' +
+      'Apache install on Ubuntu, this will be www-data.' )
   # required because we don't want to assume that they know what they're doing
   parser.add_argument(
       '--drupal-path', required=True,
-      help='The drupal directory where permissions will be fixed. If you ' + 
-      'run this script from the drupal directory, you can just use "."') 
+      help='The drupal directory where permissions will be fixed. If you ' +
+      'run this script from the drupal directory, you can just use "."')
   args = parser.parse_args()
   owner = args.owner
   server_user = args.server_user
