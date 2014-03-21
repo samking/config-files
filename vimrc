@@ -219,17 +219,6 @@ let g:checksyntax_auto = 1
 
 let b:match_ignorecase = 1
 
-" Super Tab default should use user completion if it can (ie, if Eclim returns
-" results) and default completion otherwise.
-autocmd FileType *
-  \ if &completefunc != '' |
-  \   call SuperTabChain(&completefunc, "<c-p>") |
-  \   call SuperTabSetDefaultCompletionType("<c-x><c-u>") |
-  \ endif
-" Normally, supertab will open up a preview window when completing.  We want
-" that window to close.
-let g:SuperTabClosePreviewOnPopupClose = 1
-
 " TODO: add fuzzy finder
 " TODO: when I exit insert mode and have caps lock on, something is probably
 " wrong.  Either turn caps lock off or alert me of the fact that caps lock is
