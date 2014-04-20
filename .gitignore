@@ -1,6 +1,9 @@
 # We don't want to check in personal files in the .vim
 # vim/backup has a backup of every file that gets saved
 /vim/backup/*
+# vundle takes care of installing bundles.  They should probably be reinstalled
+# on a new computer.
+/vim/bundle/*
 # vim/tmp has a backup of every file that is currently being edited
 /vim/tmp/*
 # vim/undo has the undo history of every file

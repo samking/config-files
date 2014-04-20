@@ -1,6 +1,34 @@
 " some content from http://spf13.com/content/my-custom-vimrc-file-vim
 " ****************** INITIALIZE *******************
 set nocompatible                 " must be first line
+
+
+"*******************************************************************************
+" VUNDLE (Vim Bundle) Stuff
+" See https://github.com/gmarik/Vundle.vim#about
+"
+" Brief help
+" :PluginList          - list configured plugins
+" :PluginInstall(!)    - install (update) plugins
+" :PluginSearch(!) foo - search (or refresh cache first) for foo
+" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Plugin commands are not allowed.
+"*******************************************************************************
+filetype off                     " required for Vundle initialization
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/vundle'
+
+" YCM (You Complete Me) does tab completion.
+" See https://github.com/Valloric/YouCompleteMe
+Plugin 'Valloric/YouCompleteMe'
+
 filetype plugin indent on        " Automatically detect file types.
 syntax on                        " syntax highlighting
 
