@@ -2,7 +2,6 @@
 " ****************** INITIALIZE *******************
 set nocompatible                 " must be first line
 
-
 "*******************************************************************************
 " VUNDLE (Vim Bundle) Stuff
 " See https://github.com/gmarik/Vundle.vim#about
@@ -18,16 +17,22 @@ set nocompatible                 " must be first line
 "*******************************************************************************
 filetype off                     " required for Vundle initialization
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" Only use Vundle if it's installed.
+if filereadable($HOME.'/.vim/bundle/vundle/autoload/vundle.vim')
+  " set the runtime path to include Vundle and initialize
+  set rtp+=~/.vim/bundle/vundle/
+  call vundle#rc()
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/vundle'
+  " let Vundle manage Vundle, required
+  Plugin 'gmarik/vundle'
 
-" YCM (You Complete Me) does tab completion.
-" See https://github.com/Valloric/YouCompleteMe
-Plugin 'Valloric/YouCompleteMe'
+  " YCM (You Complete Me) does tab completion.
+  " See https://github.com/Valloric/YouCompleteMe
+  Plugin 'Valloric/YouCompleteMe'
+
+  " After YCM shows a preview, close it automatically.
+  let g:ycm_autoclose_preview_window_after_completion = 1
+endif
 
 filetype plugin indent on        " Automatically detect file types.
 syntax on                        " syntax highlighting
