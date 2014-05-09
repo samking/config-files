@@ -32,18 +32,18 @@ function InitFileDirs()
   " The ,. at the end means that if we can't access our directories, we'll use
   " the current directory (.).
   if isdirectory(tmp)
-    execute 'set backupdir=' . escape(backup, " ") . "/,."
+    execute 'set backupdir=' . resolve(escape(backup, " ")) . "//"
   else
     let missing_dir = 1
   endif
   if isdirectory(backup)
-    execute 'set directory=' . escape(tmp, " ") . "/,."
+    execute 'set directory=' . resolve(escape(tmp, " ")) . "//"
   else
     let missing_dir = 1
   endif
   if isdirectory(undo)
     if version >= 703
-      execute 'set undodir=' . escape(undo, " ") . "/,."
+      execute 'set undodir=' . resolve(escape(undo, " ")) . "//"
     endif
   else
     let missing_dir = 1
