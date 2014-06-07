@@ -239,19 +239,6 @@ PROMPT="%{$fg[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m %{$fg[blue]%}%* %{$fg[r
                                  # prompting.  0 means it only asks if it would
                                  # go offscreen.
 
-# Terminal Title
-# If I'm using an xterm terminal, then I will display
-#   username@hostname: directory
-# if I'm just running zsh, and I will display
-#   username@hostname (command): directory
-# if I'm running another command (like vim).
-case $TERM in
-  xterm*)
-    precmd ()  { print -Pn "\e]0;%n@%m: %~\a"}
-    preexec () { print -Pn "\e]0;%n@%m ($1): %~\a" }
-    ;;
-esac
-
 # TODO: Make ls use the same color scheme as zsh.
 # * For a description of how the LS_COLORS environment variable works, check out
 #   http://hintsforums.macworld.com/archive/index.php/t-46719.html
@@ -298,6 +285,45 @@ PATH=$PATH:~/bin                       # adds ~/bin to the end of path.  Note
                                        # man zshparam for what this means.
 # watch=(notme)                        # watch for everybody but me
 # watch=( $(<~/.friends) )             # watch for people in .friends file
+
+################################################################################
+# ZSH HOOKS (see http://zsh.sourceforge.net/Doc/Release/Functions.html)
+# precmd is executed before each prompt.
+# preexec is executed before a command is executed.
+# TRAPALRM is executed every TMOUT seconds.
+################################################################################
+precmd() {
+  # If I'm using an xterm terminal, then display the following terminal title:
+  #   username@hostname: directory
+  case $TERM in
+    xterm*)
+      print -Pn "\e]0;%n@%m: %~\a"
+      ;;
+  esac
+}
+
+preexec() { 
+  # If I'm using an xterm terminal, display the following terminal title when
+  # running a command like vim:
+  #   username@hostname (command): directory
+  case $TERM in
+    xterm*)
+      print -Pn "\e]0;%n@%m ($1): %~\a" 
+      ;;
+  esac
+}
+
+# Reset the prompt every minute so that the time in the prompt doesn't get too
+# far off.  We could have it tick every second, but that would be too
+# distracting.
+# TODO(samking): It might be possible to use ANSI escape codes and echo -e in
+# preexec to do this more precisely, but I haven't been able to puzzle through
+# it yet.
+# http://stackoverflow.com/questions/13125825
+TMOUT=60
+TRAPALRM() {
+  zle reset-prompt
+}
 
 ################################################################################
 # ALIASES
