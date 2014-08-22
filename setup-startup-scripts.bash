@@ -6,7 +6,7 @@ your ubuntu machine than on your mac) in your ~/.zshrc and settings that you
 want on all of your computers in the repository.  Also, this creates a symbolic
 link to the vim folder.
 This makes it easier to update everything.  When there are changes in the
-repository, all you need to do is hg pull and hg up.  You won't need to copy
+repository, all you need to do is git pull and git push. You won't need to copy
 anything down from your repository to your home directory.
 Note that some things in each file are specific to me.  To find a list of those
 places, run the following command:
