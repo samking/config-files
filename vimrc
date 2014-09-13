@@ -18,17 +18,19 @@ set nocompatible                 " must be first line
 filetype off                     " required for Vundle initialization
 
 " Only use Vundle if it's installed.
-if filereadable($HOME.'/.vim/bundle/vundle/autoload/vundle.vim')
+if filereadable($HOME.'/.vim/bundle/Vundle.vim/autoload/vundle.vim')
   " set the runtime path to include Vundle and initialize
-  set rtp+=~/.vim/bundle/vundle/
-  call vundle#rc()
+  set rtp+=~/.vim/bundle/Vundle.vim
+  call vundle#begin()
 
   " let Vundle manage Vundle, required
-  Plugin 'gmarik/vundle'
+  Plugin 'gmarik/Vundle.vim'
 
   " YCM (You Complete Me) does tab completion.
   " See https://github.com/Valloric/YouCompleteMe
   Plugin 'Valloric/YouCompleteMe'
+
+  call vundle#end()
 
   " After YCM shows a preview, close it automatically.
   let g:ycm_autoclose_preview_window_after_completion = 1
