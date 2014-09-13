@@ -30,6 +30,9 @@ if filereadable($HOME.'/.vim/bundle/Vundle.vim/autoload/vundle.vim')
   " See https://github.com/Valloric/YouCompleteMe
   Plugin 'Valloric/YouCompleteMe'
 
+  " Dart syntax highlighting, indentation, etc.
+  Plugin 'dart-lang/dart-vim-plugin'
+
   call vundle#end()
 
   " After YCM shows a preview, close it automatically.
