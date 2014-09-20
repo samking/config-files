@@ -1,30 +1,39 @@
 #!/usr/bin/env bash
-echo "This script will add lines in your zshrc, zshenv, vimrc, hgrc, and login
-to source the files in this repository.  That way, you can have computer
-specific settings (for instance, if you need a command to behave differently on
-your ubuntu machine than on your mac) in your ~/.zshrc and settings that you
-want on all of your computers in the repository.  Also, this creates a symbolic
-link to the vim folder.
-This makes it easier to update everything.  When there are changes in the
-repository, all you need to do is git pull and git push. You won't need to copy
-anything down from your repository to your home directory.
-Note that some things in each file are specific to me.  To find a list of those
-places, run the following command:
+echo "This script will set up the following files:
+* Shells: zshrc, zshenv, login
+* Editors: vimrc, vim directory
+* Version Control: hgrc, gitconfig
+
+This script does NOT set up any of the following:
+* eclim, eclimrc
+* gitignore
+
+The vim directory will be symlinked; the others will import the files in the
+config folder.  That means that you just need to git push and git pull to make
+changes.
+
+If you want computer-specific settings (for instance, if you need a command to
+behave differently on your work machine versus on your personal machine), put
+the common things in the repository and leave per-machine things in your actual
+dot files.
+
+Note that some things in each file should be customized.  To find a list of
+those places, run the following command:
   grep -n CUSTOMIZE *
-Also note that gitconfig, gitignore, and eclimrc don't support includes, so
-you'll need to manually copy them.
+
+Also note that gitignore and eclimrc don't support includes, so you'll need to
+manually copy them.
+
 For the sake of visibility, none of these are dot files.  However, in your home
 folder, they must be dot files.
-Vim is set up to work well with Eclim (which adds Eclipse features to Vim), but
-you actually need to install it.  Go to eclim.org to install it.
 "
 
 # For instructions on how to do a confirmation like this, see
 # http://stackoverflow.com/questions/1885525/how-do-i-prompt-a-user-for-confirmation-in-bash-script
-read -p "This should just add a line to your files, but it could cause
-unintended consequences.  Are you sure that you want to continue? " -n 1
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]
+read -r -p "This should just add a line to your files, but it could cause
+unintended consequences.  Are you sure you want to continue? [Y/n] " response
+response=${response,,} # tolower
+if [[ $response =~ ^(yes|y|) ]]
 then
   # Get the path of the config directory, which is the same as the directory
   # from which this script was executed.  From
@@ -53,7 +62,9 @@ then
   if [ \( -z "`grep -s "source $CONFIG_PATH/login" $HOME/.login`" \) ]; then
     echo "source $CONFIG_PATH/login" >> $HOME/.login
   fi
-  # TODO: gitconfig might support includes soon.  When it does, add the include.
+  if [ \( -z "`grep -s "$CONFIG_PATH/gitconfig" $HOME/.gitconfig`" \) ]; then
+    echo -e "[include]\n  path = $CONFIG_PATH/gitconfig" >> $HOME/.gitconfig
+  fi
   # TODO: add option to copy over files even if there isn't an include directive
 
   # Creates a symbolic link to the vim folder where backups, temp files,
