@@ -1,4 +1,4 @@
-Sam King's Linux Config Files and Utility Scripts
+Sam King's Config Files and Scripts
 ============
 
 This contains the following config files:
