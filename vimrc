@@ -26,6 +26,9 @@ if filereadable($HOME.'/.vim/bundle/Vundle.vim/autoload/vundle.vim')
   " let Vundle manage Vundle, required
   Plugin 'gmarik/Vundle.vim'
 
+  " LESS (dynamic css) syntax highlighting.
+  Plugin 'groenewege/vim-less'
+
   " YCM (You Complete Me) does tab completion.
   " See https://github.com/Valloric/YouCompleteMe
   Plugin 'Valloric/YouCompleteMe'
