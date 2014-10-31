@@ -1,0 +1,5 @@
+--sort-files
+--smart-case
+# har files are http archives.  These might all be on one line, which annoyingly
+# creates a lot of matches that aren't useful.
+--ignore-file=ext:har
