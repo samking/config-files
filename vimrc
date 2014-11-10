@@ -23,6 +23,15 @@ if filereadable($HOME.'/.vim/bundle/Vundle.vim/autoload/vundle.vim')
   set rtp+=~/.vim/bundle/Vundle.vim
   call vundle#begin()
 
+  " vim plugins that James uses.  Alternately, try ctrl-p?
+  " vim-sensible
+  " command-t
+  " supertab
+  " nerdtree
+  " vim-surround
+  " vim-flake8
+  " jshint
+
   " let Vundle manage Vundle, required
   Plugin 'gmarik/Vundle.vim'
 
@@ -172,6 +181,10 @@ if &textwidth > 1
     " autocmd BufWinEnter * let w:m1=matchadd('ErrorMsg', '\v(.*)(%>'.&textwidth.'v.+)@=', -1)
   endif
 endif
+
+" Highlight trailing whitespace
+highlight ExtraWhitespace ctermbg=yellow guibg=yellow
+match ExtraWhitespace /\s\+$/
 
 " ****************** FORMATTING *******************
 " set nowrap                     " wrap long lines
