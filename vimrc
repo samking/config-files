@@ -53,11 +53,23 @@ if filereadable($HOME.'/.vim/bundle/Vundle.vim/autoload/vundle.vim')
 
   if executable('ag')
     " Use Ag over Grep
-    set grepprg=ag\ --nogroup\ --nocolor
+    set grepprg=ag\ --nogroup
+
+    " Shift+K uses ag to search for the word under the cursor.
+    nnoremap K :Ag! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
     " Use ag in CtrlP for listing files
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    let g:ctrlp_user_command = 'ag %s -l -g ""'
   endif
+
+  " CtrlP should use regex searches for files.
+  let g:ctrlp_regexp = 1
+
+  " CtrlP should open new files in a new tab rather than the current window.
+  let g:ctrlp_prompt_mappings = {
+      \ 'AcceptSelection("e")': ['<c-t>'],
+      \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+      \ }
 
   " After YCM shows a preview, close it automatically.
   let g:ycm_autoclose_preview_window_after_completion = 1
