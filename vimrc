@@ -23,29 +23,41 @@ if filereadable($HOME.'/.vim/bundle/Vundle.vim/autoload/vundle.vim')
   set rtp+=~/.vim/bundle/Vundle.vim
   call vundle#begin()
 
-  " vim plugins that James uses.  Alternately, try ctrl-p?
-  " vim-sensible
-  " command-t
-  " supertab
-  " nerdtree
-  " vim-surround
-  " vim-flake8
-  " jshint
+  " Plugins to investigate:
+  " * nerdtree
+  " * vim-surround
+  " * Syntastic and other syntax plugins (eg, vim-flake8, jshint)
 
   " let Vundle manage Vundle, required
   Plugin 'gmarik/Vundle.vim'
-
-  " LESS (dynamic css) syntax highlighting.
-  Plugin 'groenewege/vim-less'
 
   " YCM (You Complete Me) does tab completion.
   " See https://github.com/Valloric/YouCompleteMe
   Plugin 'Valloric/YouCompleteMe'
 
+  " Ag is like a richer grep or a faster ack.  This adds ag support to vim.
+  " https://github.com/rking/ag.vim
+  Plugin 'rking/ag.vim'
+
+  " CtrlP does file search.  An alternative is Command-T.
+  " https://github.com/kien/ctrlp.vim
+  Plugin 'kien/ctrlp.vim'
+
+  " LESS (dynamic css) syntax highlighting.
+  Plugin 'groenewege/vim-less'
+
   " Dart syntax highlighting, indentation, etc.
   Plugin 'dart-lang/dart-vim-plugin'
 
   call vundle#end()
+
+  if executable('ag')
+    " Use Ag over Grep
+    set grepprg=ag\ --nogroup\ --nocolor
+
+    " Use ag in CtrlP for listing files
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  endif
 
   " After YCM shows a preview, close it automatically.
   let g:ycm_autoclose_preview_window_after_completion = 1
