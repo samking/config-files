@@ -62,9 +62,6 @@ if filereadable($HOME.'/.vim/bundle/Vundle.vim/autoload/vundle.vim')
     let g:ctrlp_user_command = 'ag %s -l -g ""'
   endif
 
-  " CtrlP should use regex searches for files.
-  let g:ctrlp_regexp = 1
-
   " CtrlP should open new files in a new tab rather than the current window.
   let g:ctrlp_prompt_mappings = {
       \ 'AcceptSelection("e")': ['<c-t>'],
