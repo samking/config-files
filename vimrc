@@ -220,6 +220,12 @@ set softtabstop=2                " when I press 'tab', vim inserts 2 columns
 set pastetoggle=<F12>            " pastetoggle (sane indentation on pastes)
 " set comments=sl:/*,mb:*,elx:*/ " auto format comment blocks
 
+" If this is 1, python is two spaces; if this is 0, python is 4 spaces.
+" The actual setting of tabstop, etc, happens in vim/after/ftplugin/python.vim
+" To configure this on a per-computer basis, you can source this common file
+" and, after sourcing it, overwrite this variable.
+let g:python_use_two_spaces = 1
+
 " ****************** GENERAL SHORTCUTS *******************
 " map lhs rhs replaces lhs with rhs.
 " Each mapping command is associated with a particular mode.  Thus, some map
