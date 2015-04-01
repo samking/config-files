@@ -302,13 +302,13 @@ precmd() {
   esac
 }
 
-preexec() { 
+preexec() {
   # If I'm using an xterm terminal, display the following terminal title when
   # running a command like vim:
   #   username@hostname (command): directory
   case $TERM in
     xterm*)
-      print -Pn "\e]0;%n@%m ($1): %~\a" 
+      print -Pn "\e]0;%n@%m ($1): %~\a"
       ;;
   esac
 }
@@ -384,15 +384,15 @@ fi
 # will read the vimrc even if sudo sets the $HOME variable to /root
 # We can't do this with a normal alias because multiword aliases don't work: see
 # http://superuser.com/questions/105375/bash-spaces-in-alias-name
-sudo() { 
+sudo() {
   # If my editor is vim and the first argument in my sudo command is vi or vim
-  if [[ $EDITOR == "vim" && ( $1 == "vim" || $1 == "vi" ) ]]; then 
+  if [[ $EDITOR == "vim" && ( $1 == "vim" || $1 == "vi" ) ]]; then
     # $@ takes every argument.  ${@[2,-1]} takes every argument starting with 2
     # (array slices in ZSH work similar to Python, so -1 represents the last
     # element).  We want to turn "sudo vim foo bar baz" into "sudoedit foo bar
     # baz", so going from 2 to the end is what we want.
     command sudoedit "${@[2,-1]}"
-  else 
+  else
     # Otherwise, just do the sudo command normally
     command sudo "$@"
   fi
