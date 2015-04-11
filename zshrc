@@ -459,6 +459,13 @@ bindkey '[1;5C' vi-forward-blank-word
 bindkey ' ' magic-space     # also do history expansion on space
 bindkey '^I' complete-word  # complete on tab, leave expansion to _expand
 
+# Ctrl+P and Ctrl+R do the same thing.
+bindkey '^p' history-incremental-search-backward
+
+# TODO: it would be nice if Ctrl+Backspace deleted a word, but the terminal
+# doesn't support that, so using Ctrl+W will have to work for the time being.
+
+
 ################################################################################
 # FUNCTIONS, EXTERNAL MODULES: SETUP
 ################################################################################
