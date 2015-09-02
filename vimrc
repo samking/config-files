@@ -35,13 +35,12 @@ if filereadable($HOME.'/.vim/bundle/Vundle.vim/autoload/vundle.vim')
   " See https://github.com/Valloric/YouCompleteMe
   Plugin 'Valloric/YouCompleteMe'
 
-  " Ag is like a richer grep or a faster ack.  This adds ag support to vim.
-  " https://github.com/rking/ag.vim
-  Plugin 'rking/ag.vim'
-
   " CtrlP does file search.  An alternative is Command-T.
   " https://github.com/kien/ctrlp.vim
   Plugin 'kien/ctrlp.vim'
+
+  " CtrlP search is bad in large codebases, so use a custom matcher for it.
+  Plugin 'JazzCore/ctrlp-cmatcher'
 
   " LESS (dynamic css) syntax highlighting.
   Plugin 'groenewege/vim-less'
@@ -51,16 +50,12 @@ if filereadable($HOME.'/.vim/bundle/Vundle.vim/autoload/vundle.vim')
 
   call vundle#end()
 
-  if executable('ag')
-    " Use Ag over Grep
-    set grepprg=ag\ --nogroup
-
-    " Shift+K uses ag to search for the word under the cursor.
-    nnoremap K :Ag! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-    " Use ag in CtrlP for listing files
-    let g:ctrlp_user_command = 'ag %s -l -g ""'
-  endif
+  " CtrlP should use the custom C matcher
+  let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
+  " Search all the files rather than limiting it.
+  let g:ctrlp_max_files = 0
+  " CtrlP should open dotfiles.
+  let g:ctrlp_show_hidden = 1
 
   " CtrlP should open new files in a new tab rather than the current window.
   let g:ctrlp_prompt_mappings = {
