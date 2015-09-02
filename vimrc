@@ -35,6 +35,10 @@ if filereadable($HOME.'/.vim/bundle/Vundle.vim/autoload/vundle.vim')
   " See https://github.com/Valloric/YouCompleteMe
   Plugin 'Valloric/YouCompleteMe'
 
+  " Solarized color scheme
+  " http://ethanschoonover.com/solarized
+  Plugin 'altercation/vim-colors-solarized'
+
   " Ag is like a richer grep or a faster ack.  This adds ag support to vim.
   " https://github.com/rking/ag.vim
   Plugin 'rking/ag.vim'
@@ -75,10 +79,14 @@ endif
 filetype plugin indent on        " Automatically detect file types.
 syntax on                        " syntax highlighting
 
-" ****************** VISUAL *******************
-" color traditional              " load a colorscheme
 
-" highlight cursor
+" ****************** VISUAL *******************
+" Solarized color scheme with dark background
+set t_Co=16
+set background=dark
+colorscheme solarized
+
+" Highlight cursor
 hi CursorColumn guibg=#333333
 
 if has('cmdline_info')
@@ -105,7 +113,6 @@ endif
 if has('gui_running')
   set guioptions-=T              " remove the toolbar
   set lines=40                   " 40 lines of text instead of 24,
-  colorscheme evening            " use the evening color scheme
   set cursorline                 " highlight current line
   " highlight bg color of current line
   hi cursorline guibg=#333333

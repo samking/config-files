@@ -245,6 +245,8 @@ PROMPT="%{$fg[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m %{$fg[blue]%}%* %{$fg[r
 # * To see the ZSH colors, check out the Colored completion listings section of
 #   man zshmodules
 # LS_COLORS=
+" make ls colorization work well with the Solarized color scheme.
+eval `dircolors ~/config-files/dircolors-solarized/dircolors.ansi-dark`
 
 # Help
 # not used internally; just sets MANPATH
