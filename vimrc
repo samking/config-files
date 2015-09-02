@@ -207,10 +207,10 @@ match ExtraWhitespace /\s\+$/
 "set autoindent                  " indent at the same level of the previous line
 "set smartindent                 " do more indentation after indenty things
                                  " NOTE: can interfere with filetype indentation
-set tabstop=2                    " 2 columns per tab
+set tabstop=4                    " 4 columns per tab
 set expandtab                    " turn tabs into spaces
-set shiftwidth=2                 " > and < will (un)indepnt 2 columns
-set softtabstop=2                " when I press 'tab', vim inserts 2 columns
+set shiftwidth=4                 " > and < will (un)indepnt 4 columns
+set softtabstop=4                " when I press 'tab', vim inserts 4 columns
 " set matchpairs+=<:>            " match, to be used with %
 set pastetoggle=<F12>            " pastetoggle (sane indentation on pastes)
 " set comments=sl:/*,mb:*,elx:*/ " auto format comment blocks
