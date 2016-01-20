@@ -4,3 +4,6 @@
 # creates a lot of matches that aren't useful.
 --ignore-file=ext:har
 --ignore-file=ext:svg
+# Python Coverage reports aren't useful.
+--ignore-dir=htmlcov
+--ignore-file=match:.coverage
