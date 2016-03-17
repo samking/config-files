@@ -109,8 +109,10 @@ compinit
 unsetopt auto_cd         # if I type a directory without 'cd', zsh automatically
                          # cds into it
 setopt auto_pushd        # when I cd, push the old directory onto the dir stack
-setopt pushd_ignore_dups # don't push duplicate copies of a directory to
-                         # the directory stack
+# If this option is set, you can't push the same directory onto the dirstack
+# twice in a row.  That causes issues if you use a pushd, do something, popd
+# pattern.   Thus, we allow duplicates.
+unsetopt pushd_ignore_dups
 
 # Completion
 setopt auto_list         # when tab completion is ambiguous, list choices
