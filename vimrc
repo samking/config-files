@@ -52,6 +52,9 @@ if filereadable($HOME.'/.vim/bundle/Vundle.vim/autoload/vundle.vim')
   " Dart syntax highlighting, indentation, etc.
   Plugin 'dart-lang/dart-vim-plugin'
 
+  " Scala syntax highlighting
+  Plugin 'derekwyatt/vim-scala'
+
   call vundle#end()
 
   " CtrlP should use the custom C matcher
