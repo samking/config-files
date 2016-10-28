@@ -65,6 +65,9 @@ then
   if [ \( -z "`grep -s "$CONFIG_PATH/gitconfig" $HOME/.gitconfig`" \) ]; then
     echo -e "[include]\n  path = $CONFIG_PATH/gitconfig" >> $HOME/.gitconfig
   fi
+  if [ \( -z "`grep -s "$CONFIG_PATH/screenrc" $HOME/.screenrc`" \) ]; then
+    echo -e "source $CONFIG_PATH/screenrc" >> $HOME/.screenrc
+  fi
   # TODO: add option to copy over files even if there isn't an include directive
 
   # Creates a symbolic link to the vim folder where backups, temp files,

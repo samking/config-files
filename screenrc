@@ -1,0 +1,2 @@
+# Support mousewheel scrolling
+termcapinfo xterm* ti@:te@
