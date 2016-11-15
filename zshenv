@@ -17,8 +17,8 @@ popd > /dev/null
 # CUSTOMIZE(shell)
 export SHELL=/bin/zsh
 # CUSTOMIZE(editor)
-export EDITOR=/usr/bin/vim
-export VISUAL=/usr/bin/vim
+export EDITOR=`which vim`
+export VISUAL=`which vim`
 # CUSTOMIZE(timezone)
 # You can find the correct text for your timezone by running tzselect
 TZ='America/Los_Angeles' 
