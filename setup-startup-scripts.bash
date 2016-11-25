@@ -80,4 +80,15 @@ then
   elif [ ! \( -d $HOME/.vim/vimrc-etc -o -L $HOME/.vim/vimrc-etc \) ]; then
     ln -s $CONFIG_PATH/vim/vimrc-etc $HOME/.vim/vimrc-etc
   fi
+
+  # Set up Vundle
+  if [[ ! -e $HOME/.vim/bundle/Vundle.vim ]]; then
+    git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
+    vim "+:PluginInstall" "+:q" "+:q"
+  fi
+
+  # Setup Solarized ls colors
+  if [[ ! -e $HOME/config-files/dircolors-solarized/dircolors.ansi-dark ]]; then
+    git clone https://github.com/seebi/dircolors-solarized $CONFIG_PATH/dircolors-solarized
+  fi
 fi
