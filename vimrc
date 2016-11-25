@@ -82,7 +82,9 @@ syntax on                        " syntax highlighting
 " Solarized color scheme with dark background
 set t_Co=16
 set background=dark
-colorscheme solarized
+" The silent invocation means that if Solarized isn't detected, Vim won't error
+" out on startup.
+:silent! colorscheme solarized
 
 " Highlight cursor
 hi CursorColumn guibg=#333333
