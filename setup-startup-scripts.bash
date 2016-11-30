@@ -32,9 +32,8 @@ folder, they must be dot files.
 # http://stackoverflow.com/questions/1885525/how-do-i-prompt-a-user-for-confirmation-in-bash-script
 read -r -p "This should just add a line to your files, but it could cause
 unintended consequences.  Are you sure you want to continue? [Y/n] " response
-response=${response,,} # tolower
-if [[ $response =~ ^(yes|y|) ]]
-then
+response=`echo $response | tr '[:upper:]' '[:lower:]'` # convert to lowercase; support old Bash
+if [[ $response == y || $response == yes ]]; then
   # Get the path of the config directory, which is the same as the directory
   # from which this script was executed.  From
   # http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
