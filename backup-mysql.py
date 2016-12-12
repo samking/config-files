@@ -9,6 +9,7 @@
 # Before doing that, you should customize the BACKUP_ROOT variable.
 # You should also make a mysql config file called backup-mysql.my.cnf and put it
 # in the BACKUP_ROOT.
+# gzip must be installed if the USE_GZIP constant is True.
 
 import datetime
 import subprocess
@@ -21,9 +22,10 @@ BACKUP_CONFIG_FILE = BACKUP_ROOT + 'backup-mysql.my.cnf'
 ALLOWED_PERIODS = ['hourly', 'daily', 'monthly']
 MAX_BACKUPS_PER_PERIOD = {
     'hourly' : 24,
-    'daily' : 31,
-    'monthly' : 12
+    'daily' : 365,
+    'monthly' : float("inf")
 }
+USE_GZIP = True
 
 def add_backup(backup_period):
   """Creates a new mysql backup named using the current timestamp as a name.
@@ -35,6 +37,8 @@ def add_backup(backup_period):
   sql_dump = subprocess.call(
       ['mysqldump', '--defaults-extra-file=' + BACKUP_CONFIG_FILE],
       stdout=output_file)
+  if USE_GZIP:
+    subprocess.call(['gzip', file_path])
 
 def remove_extra_backups(backup_period):
   """If there are more backups in the provided period than
