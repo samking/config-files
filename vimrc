@@ -41,10 +41,11 @@ if filereadable($HOME.'/.vim/bundle/Vundle.vim/autoload/vundle.vim')
 
   " CtrlP does file search.  An alternative is Command-T.
   " https://github.com/kien/ctrlp.vim
-  Plugin 'kien/ctrlp.vim'
+  Plugin 'ctrlpvim/ctrlp.vim'
 
   " CtrlP search is bad in large codebases, so use a custom matcher for it.
-  Plugin 'JazzCore/ctrlp-cmatcher'
+  " However, this doesn't seem to work anymore.
+  " Plugin 'JazzCore/ctrlp-cmatcher'
 
   " LESS (dynamic css) syntax highlighting.
   Plugin 'groenewege/vim-less'
@@ -57,12 +58,12 @@ if filereadable($HOME.'/.vim/bundle/Vundle.vim/autoload/vundle.vim')
 
   call vundle#end()
 
-  " CtrlP should use the custom C matcher
-  let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
   " Search all the files rather than limiting it.
   let g:ctrlp_max_files = 0
   " CtrlP should open dotfiles.
   let g:ctrlp_show_hidden = 1
+  " Ignore files in .gitignore
+  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
   " CtrlP should open new files in a new tab rather than the current window.
   let g:ctrlp_prompt_mappings = {
