@@ -21,3 +21,6 @@
 # Vimball delete records are user specific
 /vim/.VimballRecord
 /.hg/
+# Don't add submodules for solarized
+dircolors-solarized
+gnome-terminal-colors-solarized
