@@ -8,9 +8,9 @@ pushd `dirname $0` > /dev/null
 CONFIG_PATH=`pwd`
 popd > /dev/null
 
-# Setup Solarized ls colors
-if [[ ! -e $HOME/config-files/gnome-terminal-colors-solarized/install.sh ]]; then
-  git clone git@github.com:Anthony25/gnome-terminal-colors-solarized.git $CONFIG_PATH/gnome-terminal-colors-solarized
+# Setup Solarized terminal colors
+if [[ ! -e $CONFIG_PATH/gnome-terminal-colors-solarized/install.sh ]]; then
+  git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git $CONFIG_PATH/gnome-terminal-colors-solarized
 fi
 
 $CONFIG_PATH/gnome-terminal-colors-solarized/install.sh -s dark
