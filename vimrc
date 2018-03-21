@@ -172,7 +172,10 @@ set writebackup                  " backup before overwriting a file
 set mouse=a                      " Enable the mouse in the console
 set textwidth=80                 " 80 character limit
 " CUSTOMIZE(shell)
-set shell=zsh                    " :shell opens zsh
+if executable("zsh")
+  set shell=zsh                  " :shell opens zsh
+endif
+
 
 " Vim jumps to the last position when opening a file
 if has("autocmd")
