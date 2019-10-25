@@ -7,5 +7,30 @@
 [color]
   # colorize by default
 	ui = true
+[alias]
+  # Typo fixes
+	satus = status
+  tsatus = status
+  sattus = status
+	rbanch = branch
+	ceckout = checkout
+# https://www.viget.com/articles/dress-up-your-git-diffs-with-word-level-highlights/
+# To actually use diff-highlight, add diff-highlight to your path and uncomment
+# the following lines:
+# [core]
+#   pager = diff-highlight | less
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
+[color "diff"]
+  commit = green
+  # meta is for stuff like the filename
+  meta = yellow
+  frag = cyan
+  old = red
+  new = green
+  whitespace = red reverse
 
 # vim: ft=gitconfig
