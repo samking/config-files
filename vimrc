@@ -33,7 +33,11 @@ if filereadable($HOME.'/.vim/bundle/Vundle.vim/autoload/vundle.vim')
 
   " YCM (You Complete Me) does tab completion.
   " See https://github.com/Valloric/YouCompleteMe
-  Plugin 'Valloric/YouCompleteMe'
+  " YCM requires python3 support, and the default Mac vim doesn't have python3
+  " support.
+  if has('python3')
+    Plugin 'Valloric/YouCompleteMe'
+  endif
 
   " Solarized color scheme
   " http://ethanschoonover.com/solarized
@@ -56,6 +60,19 @@ if filereadable($HOME.'/.vim/bundle/Vundle.vim/autoload/vundle.vim')
   " Scala syntax highlighting
   Plugin 'derekwyatt/vim-scala'
 
+  " JS formatter
+  Plugin 'prettier/vim-prettier'
+  let g:prettier#autoformat = 0
+  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
+
+  " JS syntax highlighting with stuff like JSX
+  Plugin 'yuezk/vim-js'
+  Plugin 'maxmellon/vim-jsx-pretty'
+  Plugin 'ianks/vim-tsx'
+
+  " Syntax highlighting for all languages
+  " Plugin sheerun/vim-polyglot
+
   call vundle#end()
 
   " Search all the files rather than limiting it.
@@ -73,6 +90,9 @@ if filereadable($HOME.'/.vim/bundle/Vundle.vim/autoload/vundle.vim')
 
   " After YCM shows a preview, close it automatically.
   let g:ycm_autoclose_preview_window_after_completion = 1
+  " Allow showing unlimited diagnostic hints
+  let g:ycm_max_diagnostics_to_display = 0
+  map <C-f> :YcmCompleter FixIt<CR>
 endif
 
 filetype plugin indent on        " Automatically detect file types.
@@ -223,10 +243,10 @@ match ExtraWhitespace /\s\+$/
 "set autoindent                  " indent at the same level of the previous line
 "set smartindent                 " do more indentation after indenty things
                                  " NOTE: can interfere with filetype indentation
-set tabstop=4                    " 4 columns per tab
+set tabstop=2                    " 2 columns per tab
 set expandtab                    " turn tabs into spaces
-set shiftwidth=4                 " > and < will (un)indepnt 4 columns
-set softtabstop=4                " when I press 'tab', vim inserts 4 columns
+set shiftwidth=2                 " > and < will (un)indent 2 columns
+set softtabstop=2                " when I press 'tab', vim inserts 4 columns
 " set matchpairs+=<:>            " match, to be used with %
 set pastetoggle=<F12>            " pastetoggle (sane indentation on pastes)
 " set comments=sl:/*,mb:*,elx:*/ " auto format comment blocks
