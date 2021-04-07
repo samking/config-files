@@ -17,6 +17,7 @@
 	rbanch = branch
 	ceckout = checkout
   cehckout = checkout
+  checkotu = checkout
 # https://www.viget.com/articles/dress-up-your-git-diffs-with-word-level-highlights/
 # To actually use diff-highlight, add diff-highlight to your path and uncomment
 # the following lines:
