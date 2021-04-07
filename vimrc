@@ -41,7 +41,7 @@ if filereadable($HOME.'/.vim/bundle/Vundle.vim/autoload/vundle.vim')
 
   " Solarized color scheme
   " http://ethanschoonover.com/solarized
-  Plugin 'altercation/vim-colors-solarized'
+  " Plugin 'altercation/vim-colors-solarized'
 
   " CtrlP does file search.  An alternative is Command-T.
   " https://github.com/kien/ctrlp.vim
@@ -105,7 +105,7 @@ set t_Co=16
 set background=dark
 " The silent invocation means that if Solarized isn't detected, Vim won't error
 " out on startup.
-:silent! colorscheme solarized
+" :silent! colorscheme solarized
 
 " Highlight cursor
 hi CursorColumn guibg=#333333
