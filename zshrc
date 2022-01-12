@@ -131,11 +131,11 @@ setopt extended_glob     # treat #, ~, and ^ as globbing patterns
 setopt nomatch           # zsh gets mad when I glob patterns that don't exist
 
 # History
-setopt append_history    # append to the history file
-setopt hist_ignore_dups  # don't add immediately repeated commands to history
-setopt extended_history  # add timestamps to history.  For a rough idea of the
-                         # extra disk space this uses, you'll use up an extra
-                         # 15kB for running 1000 commands.  Your call.
+setopt inc_append_history  # append to the history file incrementally
+setopt hist_ignore_dups    # don't add immediately repeated commands to history
+setopt extended_history    # add timestamps to history.  For a rough idea of the
+                           # extra disk space this uses, you'll use up an extra
+                           # 15kB for running 1000 commands.  Your call.
 
 # Init
 
@@ -194,11 +194,11 @@ DIRSTACKSIZE=40            # max size of the directory stack. Good for
 # History File
 HISTFILE=~/.zsh-histfile   # Save shell history into .zsh-histfile so we don't 
                            # lose history (up arrow) when closing the shell
-HISTSIZE=10000             # the number of lines to read from history file at
+HISTSIZE=500000            # the number of lines to read from history file at
                            # startup.  The only reason to have this larger than
                            # SAVEHIST is as a buffer for saving duplicated
                            # history events
-SAVEHIST=10000             # the number of lines to save to history at logout
+SAVEHIST=500000            # the number of lines to save to history at logout
 
 # Completion
 fignore=(.o .c~ .old .pro) # ignores these file types when doing file completion
