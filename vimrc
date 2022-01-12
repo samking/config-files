@@ -41,7 +41,7 @@ if filereadable($HOME.'/.vim/bundle/Vundle.vim/autoload/vundle.vim')
 
   " Solarized color scheme
   " http://ethanschoonover.com/solarized
-  " Plugin 'altercation/vim-colors-solarized'
+  Plugin 'altercation/vim-colors-solarized'
 
   " CtrlP does file search.  An alternative is Command-T.
   " https://github.com/kien/ctrlp.vim
@@ -55,10 +55,10 @@ if filereadable($HOME.'/.vim/bundle/Vundle.vim/autoload/vundle.vim')
   Plugin 'groenewege/vim-less'
 
   " Dart syntax highlighting, indentation, etc.
-  Plugin 'dart-lang/dart-vim-plugin'
+  " Plugin 'dart-lang/dart-vim-plugin'
 
   " Scala syntax highlighting
-  Plugin 'derekwyatt/vim-scala'
+  " Plugin 'derekwyatt/vim-scala'
 
   " JS formatter
   Plugin 'prettier/vim-prettier'
@@ -67,8 +67,10 @@ if filereadable($HOME.'/.vim/bundle/Vundle.vim/autoload/vundle.vim')
 
   " JS syntax highlighting with stuff like JSX
   Plugin 'yuezk/vim-js'
-  Plugin 'maxmellon/vim-jsx-pretty'
-  Plugin 'ianks/vim-tsx'
+  " Plugin 'maxmellon/vim-jsx-pretty'
+  " Plugin 'ianks/vim-tsx'
+  Plugin 'leafgarland/typescript-vim'
+  Plugin 'peitalin/vim-jsx-typescript'
 
   " Syntax highlighting for all languages
   " Plugin sheerun/vim-polyglot
@@ -98,6 +100,9 @@ endif
 filetype plugin indent on        " Automatically detect file types.
 syntax on                        " syntax highlighting
 
+" Read the whole file to do syntax highlighting.  This will be slower, but it
+" will prevent the syntax highlighting from being randomly wrong.
+autocmd BufEnter * :syntax sync fromstart
 
 " ****************** VISUAL *******************
 " Solarized color scheme with dark background
@@ -105,7 +110,7 @@ set t_Co=16
 set background=dark
 " The silent invocation means that if Solarized isn't detected, Vim won't error
 " out on startup.
-" :silent! colorscheme solarized
+:silent! colorscheme solarized
 
 " Highlight cursor
 hi CursorColumn guibg=#333333
