@@ -18,64 +18,51 @@ set nocompatible                 " must be first line
 filetype off                     " required for Vundle initialization
 
 " Only use Vundle if it's installed.
-if filereadable($HOME.'/.vim/bundle/Vundle.vim/autoload/vundle.vim')
-  " set the runtime path to include Vundle and initialize
-  set rtp+=~/.vim/bundle/Vundle.vim
-  call vundle#begin()
+if filereadable($HOME.'/.vim/autoload/plug.vim')
+  " set the runtime path to include vim-plug and initialize
+  " https://github.com/junegunn/vim-plug
+  call plug#begin()
 
   " Plugins to investigate:
   " * nerdtree
   " * vim-surround
   " * Syntastic and other syntax plugins (eg, vim-flake8, jshint)
 
-  " let Vundle manage Vundle, required
-  Plugin 'gmarik/Vundle.vim'
-
   " YCM (You Complete Me) does tab completion.
   " See https://github.com/Valloric/YouCompleteMe
   " YCM requires python3 support, and the default Mac vim doesn't have python3
   " support.
   if has('python3')
-    Plugin 'Valloric/YouCompleteMe'
+    Plug 'Valloric/YouCompleteMe'
   endif
 
   " Solarized color scheme
   " http://ethanschoonover.com/solarized
-  Plugin 'altercation/vim-colors-solarized'
+  Plug 'altercation/vim-colors-solarized'
 
   " CtrlP does file search.  An alternative is Command-T.
   " https://github.com/kien/ctrlp.vim
-  Plugin 'ctrlpvim/ctrlp.vim'
-
-  " CtrlP search is bad in large codebases, so use a custom matcher for it.
-  " However, this doesn't seem to work anymore.
-  " Plugin 'JazzCore/ctrlp-cmatcher'
-
-  " LESS (dynamic css) syntax highlighting.
-  Plugin 'groenewege/vim-less'
-
-  " Dart syntax highlighting, indentation, etc.
-  " Plugin 'dart-lang/dart-vim-plugin'
-
-  " Scala syntax highlighting
-  " Plugin 'derekwyatt/vim-scala'
+  Plug 'ctrlpvim/ctrlp.vim'
 
   " JS formatter
-  Plugin 'prettier/vim-prettier'
+  Plug 'prettier/vim-prettier'
   let g:prettier#autoformat = 0
+  let g:prettier#exec_cmd_path = "~/empower/node_modules/.bin/prettier"
   autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
 
+  " LESS (dynamic css) syntax highlighting.
+  " Plug 'groenewege/vim-less'
   " JS syntax highlighting with stuff like JSX
-  Plugin 'yuezk/vim-js'
+  " Plug 'yuezk/vim-js'
   " Plugin 'maxmellon/vim-jsx-pretty'
   " Plugin 'ianks/vim-tsx'
-  Plugin 'leafgarland/typescript-vim'
-  Plugin 'peitalin/vim-jsx-typescript'
+  " Plug 'leafgarland/typescript-vim'
+  " Plug 'peitalin/vim-jsx-typescript'
 
   " Syntax highlighting for all languages
   " Plugin sheerun/vim-polyglot
 
-  call vundle#end()
+  call plug#end()
 
   " Search all the files rather than limiting it.
   let g:ctrlp_max_files = 0
